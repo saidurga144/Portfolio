@@ -3,7 +3,7 @@
 import { useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
 import { ThemedIcon } from "@/components/ui/themed-icon";
-import { Shield, Leaf, Target, ExternalLink, ArrowUpRight } from "lucide-react";
+import { Shield, Leaf, Target, ExternalLink } from "lucide-react";
 
 const projectIcons: Record<string, React.ReactNode> = {
   "🛡️": <Shield size={20} />,
@@ -43,25 +43,9 @@ const projects = [
 
 function ProjectCard({ p, index, inView }: { p: (typeof projects)[0]; index: number; inView: boolean }) {
   const [imgState, setImgState] = useState<"loading" | "loaded" | "error">("loading");
-  const [srcIndex, setSrcIndex] = useState(0);
 
-  // Multiple screenshot sources — try each in order on failure
-  const screenshotSources = [
-    `https://api.microlink.io/?url=${encodeURIComponent(p.url)}&screenshot=true&meta=false&embed=screenshot.url`,
-    `https://image.thum.io/get/width/800/crop/600/noanimate/${p.url}`,
-    `https://mini.s-shot.ru/1024x768/PNG/800/${p.url}`,
-  ];
-
-  const currentSrc = screenshotSources[srcIndex];
-
-  const handleError = () => {
-    if (srcIndex < screenshotSources.length - 1) {
-      setSrcIndex((i) => i + 1);
-      setImgState("loading");
-    } else {
-      setImgState("error");
-    }
-  };
+  // Use local screenshots if available, otherwise show styled fallback
+  const localPreview = `/preview-${p.name.toLowerCase().replace(/[^a-z]/g, '')}.jpg`;
 
   return (
     <motion.div
@@ -101,6 +85,7 @@ function ProjectCard({ p, index, inView }: { p: (typeof projects)[0]; index: num
       {/* Screenshot preview */}
       <a href={p.url} target="_blank" rel="noopener noreferrer"
         className="relative block overflow-hidden group/preview" style={{ height: "220px" }}>
+
         {/* Loading skeleton */}
         {imgState === "loading" && (
           <div className="absolute inset-0 z-10 animate-pulse"
@@ -114,37 +99,39 @@ function ProjectCard({ p, index, inView }: { p: (typeof projects)[0]; index: num
 
         {imgState !== "error" ? (
           <img
-            key={currentSrc}
-            src={currentSrc}
+            key={localPreview}
+            src={localPreview}
             alt={`${p.name} preview`}
             className="w-full h-full object-cover object-top transition-transform duration-500 group-hover/preview:scale-105"
             style={{ opacity: imgState === "loaded" ? 1 : 0, transition: "opacity 0.4s ease" }}
             onLoad={() => setImgState("loaded")}
-            onError={handleError}
+            onError={() => setImgState("error")}
             loading="lazy"
           />
         ) : (
-          /* Final fallback */
-          <div className="w-full h-full flex flex-col items-center justify-center gap-3"
-            style={{ background: `linear-gradient(135deg, ${p.accent}12, ${p.accent}04)` }}>
-            <div className="w-12 h-12 rounded-full flex items-center justify-center"
-              style={{ background: `${p.accent}18`, border: `1px solid ${p.accent}35` }}>
-              <ExternalLink size={20} style={{ color: p.accent }} />
-            </div>
-            <p className="text-xs font-semibold" style={{ color: p.accent, fontFamily: "var(--font-dm-sans)" }}>
-              View Live Site →
+          /* Styled fallback — looks intentional, not broken */
+          <div className="w-full h-full flex flex-col items-center justify-center relative overflow-hidden"
+            style={{ background: `linear-gradient(135deg, ${p.accent}18 0%, ${p.accent}06 60%, var(--color-surface) 100%)` }}>
+            {/* Decorative circles */}
+            <div className="absolute -top-8 -right-8 w-32 h-32 rounded-full opacity-20"
+              style={{ background: p.accent, filter: "blur(24px)" }} />
+            <div className="absolute -bottom-8 -left-8 w-24 h-24 rounded-full opacity-15"
+              style={{ background: p.accent, filter: "blur(20px)" }} />
+            {/* Project name */}
+            <p className="text-2xl font-black tracking-tight relative z-10"
+              style={{ color: p.accent, fontFamily: "var(--font-space-grotesk)", filter: "brightness(1.2)" }}>
+              {p.name}
+            </p>
+            <p className="text-xs mt-1 relative z-10"
+              style={{ color: "rgba(255,255,255,0.5)", fontFamily: "var(--font-dm-sans)" }}>
+              {p.url.replace("https://", "")}
             </p>
           </div>
         )}
 
-        {/* Hover overlay */}
-        <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover/preview:opacity-100 transition-opacity duration-300"
-          style={{ background: "rgba(0,0,0,0.45)" }}>
-          <div className="flex items-center gap-2 px-4 py-2 rounded-full text-sm font-semibold text-white"
-            style={{ background: `${p.accent}cc`, backdropFilter: "blur(8px)" }}>
-            <ArrowUpRight size={16} /> Open Project
-          </div>
-        </div>
+        {/* Hover overlay — no button, just subtle darkening */}
+        <div className="absolute inset-0 opacity-0 group-hover/preview:opacity-100 transition-opacity duration-300"
+          style={{ background: "rgba(0,0,0,0.25)" }} />
       </a>
 
       {/* Tech pills */}
