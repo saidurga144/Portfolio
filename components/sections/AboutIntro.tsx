@@ -51,42 +51,40 @@ export function AboutIntro() {
       >
         {/* ABOUT */}
         <motion.span
-          style={{ x: aboutX }}
+          style={{
+            x: aboutX,
+            fontFamily: "var(--font-inter-tight), var(--font-space-grotesk), sans-serif",
+            fontSize: "clamp(2.8rem, 9vw, 9rem)",
+            letterSpacing: "-0.03em",
+            color: "var(--color-text-1)",
+            textShadow: "0 0 30px rgba(139,92,246,0.15), 0 0 70px rgba(139,92,246,0.07)",
+            willChange: "transform",
+          }}
           initial={{ opacity: 0, y: 60, filter: "blur(20px)" }}
           whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
           viewport={{ once: false, margin: "-10% 0px" }}
           transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
           className="font-black uppercase leading-none"
-          style={{
-            fontFamily: "var(--font-inter-tight), var(--font-space-grotesk), sans-serif",
-            fontSize: "clamp(2.8rem, 9vw, 9rem)",
-            letterSpacing: "-0.03em",
-            color: "var(--color-text-1)",
-            textShadow:
-              "0 0 30px rgba(139,92,246,0.15), 0 0 70px rgba(139,92,246,0.07)",
-            willChange: "transform",
-          }}
         >
           ABOUT
         </motion.span>
 
         {/* ME? */}
         <motion.span
-          style={{ x: meX }}
+          style={{
+            x: meX,
+            fontFamily: "var(--font-inter-tight), var(--font-space-grotesk), sans-serif",
+            fontSize: "clamp(2.8rem, 9vw, 9rem)",
+            letterSpacing: "-0.03em",
+            color: "#8B5CF6",
+            textShadow: "0 0 35px rgba(139,92,246,0.65), 0 0 90px rgba(139,92,246,0.3), 0 0 180px rgba(139,92,246,0.12)",
+            willChange: "transform",
+          }}
           initial={{ opacity: 0, y: 60, filter: "blur(20px)" }}
           whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
           viewport={{ once: false, margin: "-10% 0px" }}
           transition={{ duration: 1.2, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
           className="font-black uppercase leading-none"
-          style={{
-            fontFamily: "var(--font-inter-tight), var(--font-space-grotesk), sans-serif",
-            fontSize: "clamp(2.8rem, 9vw, 9rem)",
-            letterSpacing: "-0.03em",
-            color: "#8B5CF6",
-            textShadow:
-              "0 0 35px rgba(139,92,246,0.65), 0 0 90px rgba(139,92,246,0.3), 0 0 180px rgba(139,92,246,0.12)",
-            willChange: "transform",
-          }}
         >
           ME?
         </motion.span>

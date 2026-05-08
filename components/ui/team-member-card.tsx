@@ -4,8 +4,7 @@ import { motion } from 'framer-motion';
 import { clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-function cn(...inputs: any[]) { return twMerge(clsx(inputs)); }
+function cn(...inputs: unknown[]) { return twMerge(clsx(inputs)); }
 
 interface TeamMemberCardProps {
   position?: 'left' | 'right';
