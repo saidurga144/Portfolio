@@ -104,7 +104,7 @@ export function Skills() {
           />
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-stretch">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
 
           {/* LEFT — compact header + full bubble canvas */}
           <motion.div
@@ -115,7 +115,7 @@ export function Skills() {
             style={{
               background: "var(--color-surface)",
               border: "1px solid var(--color-border)",
-              minHeight: "540px",
+              minHeight: "clamp(320px, 60vw, 540px)",
             }}
           >
             {/* Compact header row at top */}

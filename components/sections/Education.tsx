@@ -108,7 +108,7 @@ export function Education() {
         </motion.div>
 
         {/* ── Curtain reveal cards ── */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-8 max-w-6xl">
           {education.map((e, i) => (
             <motion.div
               key={e.degree}
@@ -117,8 +117,9 @@ export function Education() {
               transition={{ duration: 0.7, delay: 0.15 + i * 0.2 }}
             >
               <CardCurtainReveal
-                className="h-[480px] rounded-2xl overflow-hidden cursor-pointer"
+                className="rounded-2xl overflow-hidden cursor-pointer"
                 style={{
+                  height: "clamp(360px, 55vw, 480px)",
                   border: "1px solid var(--color-border)",
                   boxShadow: "var(--shadow-card)",
                   background: "var(--color-surface)",
@@ -147,7 +148,7 @@ export function Education() {
                 </div>
 
                 {/* ── Body — always visible ── */}
-                <CardCurtainRevealBody className="relative z-10 flex flex-col justify-between h-full p-7">
+                <CardCurtainRevealBody className="relative z-10 flex flex-col justify-between h-full p-4 sm:p-7">
 
                   {/* Top: icon + period */}
                   <div className="flex items-center justify-between">

@@ -62,7 +62,7 @@ export function Contact() {
           Whether it&apos;s a project, collaboration or opportunity — let&apos;s build something great together.
         </motion.p>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
 
           {/* Left: info + socials */}
           <div className="space-y-4">
@@ -110,7 +110,7 @@ export function Contact() {
           <motion.form onSubmit={handleSubmit}
             initial={{ opacity: 0, x: 30 }} animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.7, delay: 0.2 }}
-            className="rounded-2xl p-6 space-y-4"
+            className="rounded-2xl p-4 sm:p-6 space-y-4"
             style={{ background: "var(--color-surface)", border: "1px solid var(--color-border)",
               boxShadow: "var(--shadow-card)" }}>
 

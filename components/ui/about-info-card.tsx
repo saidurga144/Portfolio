@@ -41,7 +41,7 @@ export function AboutInfoCard({ className, inView = true }: AboutInfoCardProps) 
           style={{ background: "radial-gradient(circle at bottom left, rgba(6,182,212,0.08) 0%, transparent 65%)", filter: "blur(20px)" }} />
 
         {/* Gradient divider */}
-        <div className="relative z-10 px-8 pt-8 pb-4">
+        <div className="relative z-10 px-4 sm:px-8 pt-6 sm:pt-8 pb-4">
           <motion.div
             initial={{ scaleX: 0 }}
             animate={inView ? { scaleX: 1 } : {}}
@@ -51,7 +51,7 @@ export function AboutInfoCard({ className, inView = true }: AboutInfoCardProps) 
           />
         </div>
 
-        <div className="relative z-10 px-8 pb-8 space-y-4">
+        <div className="relative z-10 px-4 sm:px-8 pb-6 sm:pb-8 space-y-4">
 
           {/* Label */}
           <motion.div

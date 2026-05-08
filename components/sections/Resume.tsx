@@ -40,7 +40,7 @@ export function Resume() {
 
         <motion.div initial={{ opacity: 0, y: 40 }} animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7, delay: 0.15 }}
-          className="max-w-lg ml-auto rounded-2xl p-8"
+          className="max-w-lg ml-auto rounded-2xl p-4 sm:p-8"
           style={{ background: "var(--color-surface)", border: "1px solid var(--color-border)",
             boxShadow: "var(--shadow-card)" }}>
 

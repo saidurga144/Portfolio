@@ -120,7 +120,7 @@ export function Navigation() {
 
       {/* ── Mobile top bar ── */}
       <div
-        className={`md:hidden pointer-events-auto flex items-center justify-between px-5 h-14
+        className={`md:hidden pointer-events-auto flex items-center justify-between px-5 h-16
                     transition-all duration-300 ${
                       scrolled
                         ? "bg-black/85 backdrop-blur-md border-b border-white/5"
@@ -130,9 +130,10 @@ export function Navigation() {
         {/* Sky toggle on mobile */}
         <SkyToggle />
         <button
-          className="p-2 text-slate-400 hover:text-white transition-colors"
+          className="p-3 text-slate-400 hover:text-white transition-colors rounded-xl active:scale-95"
           onClick={() => setMenuOpen(!menuOpen)}
           aria-label="Toggle menu"
+          style={{ minWidth: 44, minHeight: 44 }}
         >
           {menuOpen ? <X size={22} /> : <Menu size={22} />}
         </button>
@@ -148,19 +149,19 @@ export function Navigation() {
             transition={{ duration: 0.2 }}
             className="md:hidden pointer-events-auto bg-black/95 backdrop-blur-md border-b border-white/5"
           >
-            <div className="px-4 py-3 flex flex-col gap-1">
+            <div className="px-4 py-4 flex flex-col gap-1">
               {navLinks.map((link, i) => (
                 <button
                   key={link.href}
                   onClick={() => scrollTo(link.href, i)}
-                  className={`flex items-center gap-3 text-left px-4 py-3 text-sm rounded-xl transition-all ${
+                  className={`flex items-center gap-3 text-left px-4 py-3.5 text-sm rounded-xl transition-all active:scale-95 ${
                     activeIndex === i
                       ? "text-cyan-400 bg-cyan-500/10"
                       : "text-slate-400 hover:text-white hover:bg-white/5"
                   }`}
-                  style={{ fontFamily: "var(--font-dm-sans)" }}
+                  style={{ fontFamily: "var(--font-dm-sans)", minHeight: 48 }}
                 >
-                  <ThemedIcon size={30} onClick={() => scrollTo(link.href, i)}>
+                  <ThemedIcon size={32} onClick={() => scrollTo(link.href, i)}>
                     {link.icon}
                   </ThemedIcon>
                   {link.label}
