@@ -42,8 +42,26 @@ const projects = [
 ];
 
 function ProjectCard({ p, index, inView }: { p: (typeof projects)[0]; index: number; inView: boolean }) {
-  const [imgError, setImgError] = useState(false);
-  const screenshotUrl = `https://api.microlink.io/?url=${encodeURIComponent(p.url)}&screenshot=true&meta=false&embed=screenshot.url`;
+  const [imgState, setImgState] = useState<"loading" | "loaded" | "error">("loading");
+  const [srcIndex, setSrcIndex] = useState(0);
+
+  // Multiple screenshot sources — try each in order on failure
+  const screenshotSources = [
+    `https://api.microlink.io/?url=${encodeURIComponent(p.url)}&screenshot=true&meta=false&embed=screenshot.url`,
+    `https://image.thum.io/get/width/800/crop/600/noanimate/${p.url}`,
+    `https://mini.s-shot.ru/1024x768/PNG/800/${p.url}`,
+  ];
+
+  const currentSrc = screenshotSources[srcIndex];
+
+  const handleError = () => {
+    if (srcIndex < screenshotSources.length - 1) {
+      setSrcIndex((i) => i + 1);
+      setImgState("loading");
+    } else {
+      setImgState("error");
+    }
+  };
 
   return (
     <motion.div
@@ -83,19 +101,34 @@ function ProjectCard({ p, index, inView }: { p: (typeof projects)[0]; index: num
       {/* Screenshot preview */}
       <a href={p.url} target="_blank" rel="noopener noreferrer"
         className="relative block overflow-hidden group/preview" style={{ height: "220px" }}>
-        {!imgError ? (
+        {/* Loading skeleton */}
+        {imgState === "loading" && (
+          <div className="absolute inset-0 z-10 animate-pulse"
+            style={{ background: `linear-gradient(135deg, ${p.accent}08, var(--color-surface))` }}>
+            <div className="w-full h-full flex items-center justify-center">
+              <div className="w-8 h-8 rounded-full border-2 border-t-transparent animate-spin"
+                style={{ borderColor: `${p.accent}40`, borderTopColor: p.accent }} />
+            </div>
+          </div>
+        )}
+
+        {imgState !== "error" ? (
           <img
-            src={screenshotUrl}
+            key={currentSrc}
+            src={currentSrc}
             alt={`${p.name} preview`}
             className="w-full h-full object-cover object-top transition-transform duration-500 group-hover/preview:scale-105"
-            onError={() => setImgError(true)}
+            style={{ opacity: imgState === "loaded" ? 1 : 0, transition: "opacity 0.4s ease" }}
+            onLoad={() => setImgState("loaded")}
+            onError={handleError}
             loading="lazy"
           />
         ) : (
+          /* Final fallback */
           <div className="w-full h-full flex flex-col items-center justify-center gap-3"
-            style={{ background: `linear-gradient(135deg, ${p.accent}10, ${p.accent}05)` }}>
+            style={{ background: `linear-gradient(135deg, ${p.accent}12, ${p.accent}04)` }}>
             <div className="w-12 h-12 rounded-full flex items-center justify-center"
-              style={{ background: `${p.accent}15`, border: `1px solid ${p.accent}30` }}>
+              style={{ background: `${p.accent}18`, border: `1px solid ${p.accent}35` }}>
               <ExternalLink size={20} style={{ color: p.accent }} />
             </div>
             <p className="text-xs font-semibold" style={{ color: p.accent, fontFamily: "var(--font-dm-sans)" }}>
@@ -103,6 +136,8 @@ function ProjectCard({ p, index, inView }: { p: (typeof projects)[0]; index: num
             </p>
           </div>
         )}
+
+        {/* Hover overlay */}
         <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover/preview:opacity-100 transition-opacity duration-300"
           style={{ background: "rgba(0,0,0,0.45)" }}>
           <div className="flex items-center gap-2 px-4 py-2 rounded-full text-sm font-semibold text-white"
