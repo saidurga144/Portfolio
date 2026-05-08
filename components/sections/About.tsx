@@ -95,31 +95,6 @@ export function About() {
           style={{ background: 'linear-gradient(90deg, rgba(139,92,246,0.5), rgba(6,182,212,0.3), transparent)' }}
         />
 
-        {/* ── Extended bio blocks ── */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 mb-4">
-          {[
-            
-          ].map((block, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 40, filter: 'blur(10px)' }}
-              whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-              viewport={{ once: true, margin: '-8% 0px' }}
-              transition={{ duration: 1.0, delay: i * 0.15, ease: [0.16, 1, 0.3, 1] }}
-              className="relative pl-6 border-l-2"
-              style={{ borderColor: block.color }}
-            >
-              <p className="text-base font-bold mb-3 leading-snug"
-                style={{ color: block.color, fontFamily: 'var(--font-space-grotesk)' }}>
-                {block.title}
-              </p>
-              <p className="text-sm leading-[1.85]"
-                style={{ color: 'rgba(148,163,184,0.85)', fontFamily: 'var(--font-dm-sans)' }}>
-                {block.body}
-              </p>
-            </motion.div>
-          ))}
-        </div>
 
       </div>
     </section>
