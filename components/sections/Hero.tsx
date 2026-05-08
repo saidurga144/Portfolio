@@ -15,10 +15,10 @@ const fadeUp = {
 };
 
 const pills = [
-  "Cybersecurity",
-  "AI-powered solutions",
-  "Full-Stack Dev",
-  "Real-world problems",
+  "Hunting real-world vulnerabilities with cybersecurity",
+  "Creating AI-powered solutions",
+  "Building modern web experiences",
+  "Solving real-world problems with technology",
 ];
 
 const socialItems = [
@@ -197,7 +197,7 @@ export function Hero() {
             className="flex flex-wrap gap-2 sm:gap-3 mb-6">
             {[
               { icon: <MapPin size={12} />,    label: "Location",  value: "India",                accent: "var(--color-accent-cyan)" },
-              { icon: <Briefcase size={12} />, label: "Expertise", value: "Cybersecurity & Dev",  accent: "var(--color-accent-purple)" },
+              { icon: <Briefcase size={12} />, label: "Expertise", value: "Cybersecurity & FullStack Developer",  accent: "var(--color-accent-purple)" },
               { icon: <Phone size={12} />,     label: "Contact",   value: "+91-7396295445",        accent: "var(--color-accent-cyan)" },
             ].map((card) => (
               <div key={card.label}
