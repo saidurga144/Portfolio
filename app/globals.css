@@ -1,0 +1,252 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  /* ─────────────────────────────────────────────
+     LIGHT MODE — soft warm cream / ivory palette
+  ───────────────────────────────────────────── */
+  :root {
+    --background:        36 33% 97%;
+    --foreground:        25 15% 18%;
+    --card:              36 30% 95%;
+    --card-foreground:   25 15% 18%;
+    --popover:           36 30% 95%;
+    --popover-foreground:25 15% 18%;
+    --primary:           189 60% 38%;
+    --primary-foreground:36 33% 97%;
+    --secondary:         36 20% 91%;
+    --secondary-foreground: 25 15% 18%;
+    --muted:             36 20% 91%;
+    --muted-foreground:  25 10% 48%;
+    --accent:            270 30% 88%;
+    --accent-foreground: 25 15% 18%;
+    --destructive:       0 72% 51%;
+    --destructive-foreground: 36 33% 97%;
+    --border:            36 18% 86%;
+    --input:             36 18% 86%;
+    --ring:              189 60% 38%;
+    --radius:            0.5rem;
+
+    /* Semantic tokens — light */
+    --color-bg:          #F8F5F0;
+    --color-surface:     #F4F0EA;
+    --color-surface-2:   #EDE8E0;
+    --color-border:      rgba(46,42,37,0.12);
+    --color-text-1:      #2E2A25;
+    --color-text-2:      #5A5550;
+    --color-text-3:      #8A8480;
+    --color-accent-cyan: #0A7A8F;
+    --color-accent-purple: #6B3FAA;
+    --shadow-card:       0 2px 12px rgba(46,42,37,0.08), 0 1px 3px rgba(46,42,37,0.05);
+  }
+
+  /* ─────────────────────────────────────────────
+     DARK MODE
+  ───────────────────────────────────────────── */
+  .dark {
+    --background:        0 0% 0%;
+    --foreground:        210 40% 98%;
+    --card:              222 47% 6%;
+    --card-foreground:   210 40% 98%;
+    --popover:           222 47% 6%;
+    --popover-foreground:210 40% 98%;
+    --primary:           189 94% 43%;
+    --primary-foreground:222.2 47.4% 11.2%;
+    --secondary:         217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --muted:             217.2 32.6% 17.5%;
+    --muted-foreground:  215 20.2% 65.1%;
+    --accent:            217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+    --destructive:       0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border:            217.2 32.6% 17.5%;
+    --input:             217.2 32.6% 17.5%;
+    --ring:              189 94% 43%;
+
+    /* Semantic tokens — dark */
+    --color-bg:          #000000;
+    --color-surface:     #0F172A;
+    --color-surface-2:   #1E293B;
+    --color-border:      rgba(255,255,255,0.08);
+    --color-text-1:      #F1F5F9;
+    --color-text-2:      #CBD5E1;
+    --color-text-3:      #94A3B8;
+    --color-accent-cyan: #06B6D4;
+    --color-accent-purple: #8B5CF6;
+    --shadow-card:       none;
+  }
+}
+
+@layer base {
+  * { @apply border-border; }
+
+  @media (hover: hover) and (pointer: fine) {
+    *, body, a, button, input, textarea, select { cursor: none !important; }
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background-color: var(--color-bg);
+    color: var(--color-text-1);
+    font-family: var(--font-dm-sans), var(--font-poppins), system-ui, sans-serif;
+    transition: background-color 0.4s ease, color 0.4s ease;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: var(--color-surface); }
+  ::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, var(--color-accent-cyan), var(--color-accent-purple));
+    border-radius: 4px;
+  }
+}
+
+/* ─────────────────────────────────────────────
+   LIGHT MODE — global overrides
+───────────────────────────────────────────── */
+:root:not(.dark) {
+
+  /* Page & section backgrounds */
+  section,
+  .bg-\[\#000000\],
+  .bg-\[\#080C14\],
+  .bg-\[\#0a0a0a\] {
+    background-color: var(--color-bg) !important;
+  }
+
+  /* Card surfaces */
+  .bg-\[\#0F172A\],
+  .bg-\[\#0f172a\] {
+    background-color: var(--color-surface) !important;
+    box-shadow: var(--shadow-card) !important;
+  }
+
+  /* Navigation pills */
+  .bg-black\/75,
+  .bg-black\/70,
+  .bg-black\/80,
+  .bg-black\/85,
+  .bg-black\/95 {
+    background-color: rgba(248,245,240,0.94) !important;
+    border-color: rgba(46,42,37,0.1) !important;
+  }
+
+  /* Tailwind text-white → dark text */
+  .text-white { color: var(--color-text-1) !important; }
+
+  /* Slate greys → warm greys */
+  .text-slate-400,
+  .text-slate-500,
+  .text-zinc-400,
+  .text-zinc-500 {
+    color: var(--color-text-2) !important;
+  }
+
+  /* Cyan accent — darken for readability */
+  .text-cyan-400 { color: var(--color-accent-cyan) !important; }
+  .border-cyan-500\/30 { border-color: rgba(10,122,143,0.3) !important; }
+  .bg-cyan-500\/10 { background-color: rgba(10,122,143,0.08) !important; }
+  .hover\:bg-cyan-500\/10:hover { background-color: rgba(10,122,143,0.08) !important; }
+
+  /* Borders */
+  .border-white\/5,
+  .border-white\/8,
+  .border-white\/10,
+  .border-white\/12 {
+    border-color: var(--color-border) !important;
+  }
+
+  /* Smooth transitions */
+  *, *::before, *::after {
+    transition-property: background-color, border-color, color, box-shadow, opacity;
+    transition-duration: 0.35s;
+    transition-timing-function: ease;
+  }
+}
+
+/* ─────────────────────────────────────────────
+   LIGHT MODE — inline style color fixes
+   These target elements that use inline rgba colors
+───────────────────────────────────────────── */
+:root:not(.dark) {
+
+  /* AboutInfoCard bio text — was rgba(203,213,225,0.82) */
+  .about-bio-text {
+    color: var(--color-text-2) !important;
+  }
+
+  /* Card backgrounds with dark rgba */
+  .about-card-surface {
+    background: var(--color-surface) !important;
+    border-color: var(--color-border) !important;
+    box-shadow: var(--shadow-card) !important;
+  }
+
+  /* Name text in TeamMemberCard */
+  .team-name-text {
+    color: var(--color-text-1) !important;
+  }
+
+  /* Section eyebrow labels */
+  .section-eyebrow {
+    color: var(--color-accent-purple) !important;
+    opacity: 0.8;
+  }
+}
+
+/* ─────────────────────────────────────────────
+   LIGHT MODE — typography
+───────────────────────────────────────────── */
+:root:not(.dark) body {
+  font-family: var(--font-inter-tight), var(--font-dm-sans), system-ui, sans-serif;
+  letter-spacing: 0.01em;
+}
+
+:root:not(.dark) h1,
+:root:not(.dark) h2,
+:root:not(.dark) h3,
+:root:not(.dark) h4 {
+  color: var(--color-text-1) !important;
+}
+
+:root:not(.dark) p {
+  color: var(--color-text-2) !important;
+}
+
+/* ─────────────────────────────────────────────
+   ANIMATIONS
+───────────────────────────────────────────── */
+@keyframes pulse-slow {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+@keyframes float-bubble {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  33% { transform: translateY(-12px) rotate(2deg); }
+  66% { transform: translateY(-6px) rotate(-1deg); }
+}
+
+.animate-float { animation: float-bubble 4s ease-in-out infinite; }
+
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+.scrollbar-hide::-webkit-scrollbar { display: none; }
+.scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+
+@layer utilities {
+  .text-balance { text-wrap: balance; }
+  .gradient-text {
+    background: linear-gradient(135deg, var(--color-accent-cyan), var(--color-accent-purple));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+}
