@@ -36,7 +36,7 @@ export function Contact() {
   return (
     <section id="contact" ref={ref} className="py-24 overflow-hidden"
       style={{ backgroundColor: "var(--color-bg)" }}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-[1400px] mx-auto px-6 sm:px-10 lg:px-20">
 
         <motion.div initial={{ opacity: 0, y: 30 }} animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7 }} className="mb-4">

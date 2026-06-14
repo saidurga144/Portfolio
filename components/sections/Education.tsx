@@ -23,7 +23,7 @@ const education = [
     color: "#06B6D4",
     curtainColor: "#0F2942",
     titleColor: "#E0F7FA",
-    image: "/kare.png",
+    image: null,
     fallbackGradient: "linear-gradient(135deg, #0F2942 0%, #0a4a6e 50%, #06B6D4 100%)",
     description: "Specialising in cybersecurity, AI/ML, and full-stack development. Active in research projects and hackathons.",
   },
@@ -38,7 +38,7 @@ const education = [
     color: "#8B5CF6",
     curtainColor: "#1A0A2E",
     titleColor: "#EDE9FE",
-    image: "/sasi.png",
+    image: null,
     fallbackGradient: "linear-gradient(135deg, #1A0A2E 0%, #3b1a6e 50%, #8B5CF6 100%)",
     description: "Completed intermediate education with distinction, building a strong foundation in mathematics and sciences.",
   },
@@ -53,7 +53,7 @@ const education = [
     color: "#10B981",
     curtainColor: "#052E1C",
     titleColor: "#D1FAE5",
-    image: "/sasi-1.png",
+    image: null,
     fallbackGradient: "linear-gradient(135deg, #052E1C 0%, #065f46 50%, #10B981 100%)",
     description: "Completed secondary education with outstanding academic performance, demonstrating excellence across all subjects.",
   },
@@ -70,7 +70,7 @@ export function Education() {
       className="py-24 overflow-hidden"
       style={{ backgroundColor: "var(--color-bg)" }}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-[1400px] mx-auto px-6 sm:px-10 lg:px-20">
 
         {/* ── Section heading ── */}
         <motion.div
@@ -130,14 +130,16 @@ export function Education() {
                   className="absolute inset-0 z-0"
                   style={{ background: e.fallbackGradient }}
                 >
-                  <img
-                    src={e.image}
-                    alt={e.institution}
-                    className="w-full h-full object-cover"
-                    onError={(ev) => {
-                      (ev.target as HTMLImageElement).style.display = "none";
-                    }}
-                  />
+                  {e.image && (
+                    <img
+                      src={e.image}
+                      alt={e.institution}
+                      className="w-full h-full object-cover"
+                      onError={(ev) => {
+                        (ev.target as HTMLImageElement).style.display = "none";
+                      }}
+                    />
+                  )}
                   {/* Permanent dark gradient — strong enough for both light & dark themes */}
                   <div
                     className="absolute inset-0"

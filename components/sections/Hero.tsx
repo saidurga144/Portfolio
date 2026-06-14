@@ -1,285 +1,229 @@
 "use client";
 
-import { useState } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { ThemedIcon } from "@/components/ui/themed-icon";
-import { Mail, Globe, MapPin, Briefcase, Phone, ChevronDown, Linkedin, Github } from "lucide-react";
 
 const fadeUp = {
-  hidden: { opacity: 0, y: 30 },
+  hidden: { opacity: 0, y: 24 },
   show: (i: number) => ({
-    opacity: 1, y: 0,
-    transition: { duration: 0.7, delay: i * 0.12, ease: [0.16, 1, 0.3, 1] },
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.8, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] },
   }),
 };
 
-const pills = [
-  "Hunting real-world vulnerabilities with cybersecurity",
-  "Creating AI-powered solutions",
-  "Building modern web experiences",
-  "Solving real-world problems with technology",
-];
-
-const socialItems = [
-  { icon: <Phone size={17} />,    href: "tel:+917396295445",                                  label: "Phone",     featured: false },
-  { icon: <Mail size={17} />,     href: "mailto:saikumard912@gmail.com",                       label: "Email",     featured: false },
-  { icon: null,                   href: "",                                                     label: "divider",   featured: false },
-  { icon: <Linkedin size={17} />, href: "https://linkedin.com/in/sai-kumar-dungala-393538289", label: "LinkedIn",  featured: false },
-  { icon: <Github size={17} />,   href: "https://github.com/saidurga144",                      label: "GitHub",    featured: false },
-  { icon: <Globe size={17} />,    href: "https://saikumar-dungala.vercel.app",                 label: "Portfolio", featured: true  },
-];
-
-function SocialBar() {
-  const [hovered, setHovered] = useState<string | null>(null);
+export function Hero() {
+  const scrollToAbout = () => {
+    document.getElementById("about")?.scrollIntoView({ behavior: "smooth" });
+  };
 
   return (
-    <div
-      className="inline-flex items-center gap-1 px-2.5 py-2 rounded-2xl"
-      style={{
-        background: "rgba(15,15,25,0.85)",
-        border: "1px solid rgba(255,255,255,0.1)",
-        backdropFilter: "blur(16px)",
-        boxShadow: "0 8px 32px rgba(0,0,0,0.4)",
-      }}
+    <section
+      id="hero"
+      className="relative min-h-[100dvh] overflow-hidden"
+      style={{ backgroundColor: "var(--color-bg)", color: "var(--color-text-1)" }}
     >
-      {socialItems.map((item) => {
-        if (item.label === "divider") {
-          return (
-            <div key="divider" className="w-px h-5 mx-1 rounded-full"
-              style={{ background: "rgba(255,255,255,0.15)" }} />
-          );
-        }
+      {/* Vertical role label — desktop only */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1, delay: 0.6 }}
+        className="pointer-events-none absolute left-5 top-1/2 z-20 hidden -translate-y-1/2 xl:block xl:left-8"
+      >
+        <span
+          className="text-[11px] font-medium uppercase tracking-[0.35em]"
+          style={{
+            writingMode: "vertical-rl",
+            textOrientation: "mixed",
+            transform: "rotate(180deg)",
+            fontFamily: "var(--font-inter-tight)",
+            color: "var(--color-text-3)",
+          }}
+        >
+          Engineer
+        </span>
+      </motion.div>
 
-        const isHovered = hovered === item.label;
-
-        if (item.featured) {
-          return (
-            <a
-              key={item.label}
-              href={item.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={item.label}
-              onMouseEnter={() => setHovered(item.label)}
-              onMouseLeave={() => setHovered(null)}
-              className="flex items-center justify-center rounded-xl font-semibold text-sm overflow-hidden"
-              style={{
-                gap: isHovered ? "8px" : "0px",
-                paddingLeft: isHovered ? "16px" : "10px",
-                paddingRight: isHovered ? "16px" : "10px",
-                paddingTop: "8px",
-                paddingBottom: "8px",
-                width: isHovered ? "auto" : "36px",
-                maxWidth: isHovered ? "160px" : "36px",
-                background: isHovered ? "linear-gradient(135deg, #06B6D4, #8B5CF6)" : "rgba(139,92,246,0.2)",
-                border: "1px solid rgba(139,92,246,0.5)",
-                color: isHovered ? "#fff" : "#a78bfa",
-                fontFamily: "var(--font-dm-sans)",
-                boxShadow: isHovered ? "0 0 20px rgba(139,92,246,0.4)" : "none",
-                transition: "all 0.3s cubic-bezier(0.16,1,0.3,1)",
-                whiteSpace: "nowrap",
-              }}
-            >
-              {item.icon}
-              <span style={{
-                maxWidth: isHovered ? "100px" : "0px",
-                opacity: isHovered ? 1 : 0,
-                overflow: "hidden",
-                transition: "max-width 0.3s cubic-bezier(0.16,1,0.3,1), opacity 0.2s ease",
-                display: "inline-block",
-              }}>
-                {item.label}
-              </span>
-            </a>
-          );
-        }
-
-        return (
-          <a
-            key={item.label}
-            href={item.href}
-            target={item.href.startsWith("http") ? "_blank" : undefined}
-            rel="noopener noreferrer"
-            aria-label={item.label}
-            onMouseEnter={() => setHovered(item.label)}
-            onMouseLeave={() => setHovered(null)}
-            className="flex items-center justify-center w-9 h-9 rounded-xl transition-all duration-200"
+      <div className="relative z-10 mx-auto flex min-h-[100dvh] max-w-[1400px] flex-row items-center gap-3 px-6 pb-8 pt-20 sm:gap-5 sm:px-10 sm:pt-24 sm:pb-10 md:gap-8 lg:gap-12 lg:px-20 lg:pt-32 lg:pb-16">
+        {/* Text — left, z-index above portrait */}
+        <div className="relative z-20 flex min-w-0 flex-col justify-center" style={{ maxWidth: "clamp(280px, 48%, 600px)" }}>
+          <motion.p
+            custom={0}
+            variants={fadeUp}
+            initial="hidden"
+            animate="show"
+            className="mb-1 text-[10px] font-semibold uppercase tracking-[0.2em] sm:mb-2 sm:text-xs sm:tracking-[0.25em] md:text-sm"
             style={{
-              color: isHovered ? "#06B6D4" : "rgba(255,255,255,0.6)",
-              background: isHovered ? "rgba(6,182,212,0.12)" : "transparent",
-              border: isHovered ? "1px solid rgba(6,182,212,0.3)" : "1px solid transparent",
+              color: "var(--color-accent-cyan)",
+              fontFamily: "var(--font-space-grotesk)",
             }}
           >
-            {item.icon}
-          </a>
-        );
-      })}
-    </div>
-  );
-}
-
-export function Hero() {
-  return (
-    <section id="hero" className="relative min-h-screen flex items-center overflow-hidden"
-      style={{ backgroundColor: "var(--color-bg)" }}>
-
-      {/* Background glows */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-1/3 left-1/3 w-[500px] h-[500px] rounded-full opacity-10"
-          style={{ background: "radial-gradient(circle, #8B5CF6 0%, transparent 70%)", filter: "blur(80px)" }} />
-        <div className="absolute bottom-1/4 right-1/4 w-72 h-72 rounded-full opacity-8"
-          style={{ background: "radial-gradient(circle, #06B6D4 0%, transparent 70%)", filter: "blur(60px)" }} />
-      </div>
-
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-8 lg:px-20 pt-20 sm:pt-24 pb-12 sm:pb-16 flex flex-col lg:flex-row items-center gap-8 lg:gap-0">
-
-        {/* LEFT */}
-        <div className="flex-1 lg:pr-10 w-full">
-
-          <motion.p custom={0} variants={fadeUp} initial="hidden" animate="show"
-            className="text-xs sm:text-sm font-semibold tracking-[0.25em] uppercase mb-2"
-            style={{ color: "var(--color-accent-cyan)", fontFamily: "var(--font-space-grotesk)" }}>
             Namaste(); I&apos;m
           </motion.p>
 
-          <motion.div custom={1} variants={fadeUp} initial="hidden" animate="show" className="mb-1">
-            <h1 className="leading-none"
+          <motion.div custom={1} variants={fadeUp} initial="hidden" animate="show" className="mb-0.5 sm:mb-1">
+            <h1
+              className="leading-none"
               style={{
                 fontFamily: "var(--font-dancing-script), cursive",
                 fontWeight: 700,
-                fontSize: "clamp(3.2rem, 10vw, 10rem)",
+                fontSize: "clamp(2rem, 8vw, 10rem)",
                 color: "var(--color-text-1)",
                 lineHeight: 1.0,
-              }}>
+              }}
+            >
               Sai Kumar
             </h1>
           </motion.div>
 
-          <motion.div custom={2} variants={fadeUp} initial="hidden" animate="show" className="mb-4">
-            <div className="h-px w-full max-w-xs mb-3"
-              style={{ background: "linear-gradient(90deg, var(--color-border), transparent)" }} />
-            <span className="font-bold tracking-[0.25em] sm:tracking-[0.35em] uppercase"
+          <motion.div custom={2} variants={fadeUp} initial="hidden" animate="show" className="mb-2 sm:mb-4 md:mb-5">
+            <div
+              className="mb-2 h-px w-full max-w-[140px] sm:mb-3 sm:max-w-xs"
+              style={{ background: "linear-gradient(90deg, var(--color-border), transparent)" }}
+            />
+            <span
+              className="font-bold uppercase tracking-[0.2em] sm:tracking-[0.3em] md:tracking-[0.35em]"
               style={{
                 fontFamily: "var(--font-space-grotesk)",
-                fontSize: "clamp(1rem, 4vw, 1.6rem)",
-                background: "linear-gradient(135deg, var(--color-accent-cyan), var(--color-accent-purple))",
-                WebkitBackgroundClip: "text", backgroundClip: "text", color: "transparent",
-              }}>
+                fontSize: "clamp(0.75rem, 2.8vw, 1.6rem)",
+                background:
+                  "linear-gradient(135deg, var(--color-accent-cyan), var(--color-accent-purple))",
+                WebkitBackgroundClip: "text",
+                backgroundClip: "text",
+                color: "transparent",
+              }}
+            >
               Dungala
             </span>
           </motion.div>
 
-          <motion.p custom={3} variants={fadeUp} initial="hidden" animate="show"
-            className="text-xs sm:text-sm font-semibold mb-4"
-            style={{ color: "var(--color-text-3)", fontFamily: "var(--font-space-grotesk)", letterSpacing: "0.05em" }}>
+          <motion.p
+            custom={3}
+            variants={fadeUp}
+            initial="hidden"
+            animate="show"
+            className="mb-2 text-[10px] font-semibold leading-snug sm:mb-4 sm:text-xs md:text-sm"
+            style={{
+              color: "var(--color-text-3)",
+              fontFamily: "var(--font-space-grotesk)",
+              letterSpacing: "0.04em",
+            }}
+          >
             Cybersecurity Engineer · Full-Stack Developer
           </motion.p>
 
-          {/* Skill pills — shorter labels on mobile */}
-          <motion.div custom={4} variants={fadeUp} initial="hidden" animate="show"
-            className="flex flex-wrap gap-2 mb-5">
-            {pills.map((p) => (
-              <span key={p} className="text-xs px-3 py-1.5 rounded-full font-medium"
-                style={{
-                  background: "var(--color-surface)",
-                  border: "1px solid var(--color-border)",
-                  color: "var(--color-text-2)",
-                  fontFamily: "var(--font-dm-sans)",
-                }}>
-                {p}
-              </span>
-            ))}
-          </motion.div>
+          <motion.p
+            custom={4}
+            variants={fadeUp}
+            initial="hidden"
+            animate="show"
+            className="hidden max-w-xl text-sm leading-relaxed sm:block sm:text-base sm:leading-7"
+            style={{
+              color: "var(--color-text-2)",
+              fontFamily: "var(--font-dm-sans)",
+            }}
+          >
+            Crafting secure digital products with a focus on vulnerability research,
+            elegant systems, and high-performance web experiences.
+          </motion.p>
 
-          {/* Info cards — stack on mobile */}
-          <motion.div custom={5} variants={fadeUp} initial="hidden" animate="show"
-            className="flex flex-wrap gap-2 sm:gap-3 mb-6">
-            {[
-              { icon: <MapPin size={12} />,    label: "Location",  value: "India",                accent: "var(--color-accent-cyan)" },
-              { icon: <Briefcase size={12} />, label: "Expertise", value: "Cybersecurity & FullStack Developer",  accent: "var(--color-accent-purple)" },
-              { icon: <Phone size={12} />,     label: "Contact",   value: "+91-7396295445",        accent: "var(--color-accent-cyan)" },
-            ].map((card) => (
-              <div key={card.label}
-                className="flex flex-col gap-0.5 px-3 py-2.5 rounded-xl flex-1 min-w-[100px]"
-                style={{ background: "var(--color-surface)", border: "1px solid var(--color-border)" }}>
-                <span className="flex items-center gap-1.5 text-[10px] font-semibold tracking-widest uppercase"
-                  style={{ color: card.accent, fontFamily: "var(--font-space-grotesk)" }}>
-                  <ThemedIcon size={18} accentColor={card.accent}>{card.icon}</ThemedIcon>
-                  {card.label}
-                </span>
-                <span className="text-xs" style={{ color: "var(--color-text-2)", fontFamily: "var(--font-dm-sans)" }}>
-                  {card.value}
-                </span>
-              </div>
-            ))}
-          </motion.div>
-
-          {/* CTAs */}
-          <motion.div custom={6} variants={fadeUp} initial="hidden" animate="show"
-            className="flex flex-wrap items-center gap-3 mb-6">
+          {/* Scroll hint — mobile/tablet */}
+          <motion.div
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 1.1 }}
+            className="mt-4 flex items-center gap-4 sm:mt-6 lg:hidden"
+          >
             <button
-              onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
-              className="px-5 sm:px-7 py-3 rounded-xl font-semibold text-sm text-white transition-all duration-300 hover:scale-105 active:scale-95"
+              type="button"
+              onClick={scrollToAbout}
+              className="group flex items-center gap-2 text-xs transition-colors sm:text-sm"
               style={{
-                background: "linear-gradient(135deg, var(--color-accent-cyan), var(--color-accent-purple))",
-                boxShadow: "0 0 24px rgba(6,182,212,0.25)",
-                fontFamily: "var(--font-dm-sans)",
-              }}>
-              Let&apos;s Connect →
-            </button>
-            <button
-              onClick={() => document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" })}
-              className="px-5 sm:px-7 py-3 rounded-xl font-semibold text-sm transition-all duration-300 active:scale-95"
-              style={{
-                border: "1px solid var(--color-border)",
                 color: "var(--color-text-3)",
-                fontFamily: "var(--font-dm-sans)",
-              }}>
-              View Projects
+                fontFamily: "var(--font-inter-tight)",
+              }}
+            >
+              <span>Scroll down</span>
+              <span className="transition-transform duration-300 group-hover:translate-y-0.5">
+                ↓
+              </span>
             </button>
-          </motion.div>
-
-          {/* Social bar */}
-          <motion.div custom={7} variants={fadeUp} initial="hidden" animate="show">
-            <SocialBar />
           </motion.div>
         </div>
 
-        {/* RIGHT — photo: hidden on xs, shown from sm up */}
+        {/* Portrait — smaller, centered vertically, right-anchored */}
         <motion.div
-          initial={{ opacity: 0, x: 60 }} animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 1.0, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
-          className="relative shrink-0 flex items-center justify-center mt-4 lg:mt-0"
+          initial={{ opacity: 0, x: 40 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 1, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
+          className="absolute pointer-events-none"
+          style={{
+            right: 0,
+            top: "20%",
+            transform: "translateY(50%)",
+            width: "clamp(260px, 58vw, 560px)",
+            height: "clamp(360px, 70vh, 680px)",
+            zIndex: 5,
+          }}
         >
-          <div className="absolute inset-0 rounded-full pointer-events-none"
-            style={{
-              background: "radial-gradient(circle, rgba(139,92,246,0.25) 0%, transparent 70%)",
-              filter: "blur(40px)", transform: "scale(1.3)",
-            }} />
-          <div
-            className="relative rounded-2xl sm:rounded-3xl overflow-hidden"
-            style={{
-              width: "clamp(200px, 45vw, 340px)",
-              height: "clamp(260px, 58vw, 440px)",
-              border: "1px solid var(--color-border)",
-              background: "var(--color-surface)",
-            }}
-          >
-            <Image src="/home .jpeg" alt="Sai Kumar Dungala" fill className="object-cover object-top" priority />
-            <div className="absolute bottom-0 left-0 right-0 h-20"
-              style={{ background: "linear-gradient(to top, var(--color-bg) 0%, transparent 100%)" }} />
-          </div>
+          {/* Top fade */}
+          <div className="absolute top-0 left-0 right-0 z-10 pointer-events-none"
+            style={{ height: "12%", background: "linear-gradient(to bottom, var(--color-bg) 0%, transparent 100%)" }} />
+          {/* Bottom fade */}
+          <div className="absolute bottom-0 left-0 right-0 z-10 pointer-events-none"
+            style={{ height: "18%", background: "linear-gradient(to top, var(--color-bg) 0%, transparent 100%)" }} />
+          {/* Left fade */}
+          <div className="absolute top-0 left-0 bottom-0 z-10 pointer-events-none"
+            style={{ width: "22%", background: "linear-gradient(to right, var(--color-bg) 0%, transparent 100%)" }} />
+          {/* Right fade */}
+          <div className="absolute top-0 right-0 bottom-0 z-10 pointer-events-none"
+            style={{ width: "8%", background: "linear-gradient(to right, transparent 0%, var(--color-bg) 100%)" }} />
+          <Image
+            src="/saikumar.png"
+            alt="Sai Kumar Dungala"
+            fill
+            priority
+            className="object-cover object-top"
+            style={{ filter: "grayscale(100%) contrast(1.08) brightness(0.97)" }}
+            sizes="(max-width: 768px) 260px, 38vw"
+          />
         </motion.div>
       </div>
 
-      {/* Scroll indicator */}
-      <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1, delay: 2 }}
-        className="absolute bottom-6 left-1/2 -translate-x-1/2">
-        <motion.div animate={{ y: [0, 6, 0] }} transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut" }}
-          style={{ color: "var(--color-text-3)" }}>
-          <ChevronDown width={20} height={20} />
-        </motion.div>
+      {/* Scroll hint — desktop */}
+      <motion.div
+        initial={{ opacity: 0, y: 12 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, delay: 1.1 }}
+        className="absolute bottom-8 left-6 z-20 hidden items-end gap-5 lg:flex lg:left-20"
+      >
+        <span
+          className="text-sm font-medium tracking-[0.2em]"
+          style={{
+            color: "var(--color-text-3)",
+            writingMode: "vertical-rl",
+            textOrientation: "mixed",
+            transform: "rotate(180deg)",
+            fontFamily: "var(--font-inter-tight)",
+          }}
+        >
+          2026
+        </span>
+
+        <button
+          type="button"
+          onClick={scrollToAbout}
+          className="group flex items-center gap-2 text-sm transition-colors"
+          style={{
+            color: "var(--color-text-3)",
+            fontFamily: "var(--font-inter-tight)",
+          }}
+        >
+          <span>Scroll down</span>
+          <span className="transition-transform duration-300 group-hover:translate-y-0.5">
+            ↓
+          </span>
+        </button>
       </motion.div>
     </section>
   );

@@ -8,8 +8,8 @@ import { AboutIntro }  from "@/components/sections/AboutIntro";
 import { About }       from "@/components/sections/About";
 import { Projects }    from "@/components/sections/Projects";
 import { Skills }      from "@/components/sections/Skills";
-import { Experience }  from "@/components/sections/Experience";
-import { Education }   from "@/components/sections/Education";
+import { ExperienceEducation } from "@/components/sections/ExperienceEducation";
+import { Connect }     from "@/components/sections/Connect";
 import { Resume }      from "@/components/sections/Resume";
 import { Contact }     from "@/components/sections/Contact";
 import { Footer }      from "@/components/Footer";
@@ -51,10 +51,10 @@ export default function HomePage() {
               <Hero />
               <AboutIntro />
               <About />
-              <Projects />
               <Skills />
-              <Experience />
-              <Education />
+              <Projects />
+              <ExperienceEducation />
+              <Connect />
               <Resume />
               <Contact />
             </main>

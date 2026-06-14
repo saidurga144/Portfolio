@@ -1,7 +1,7 @@
 "use client"
 
 import * as React from "react"
-import { HTMLMotionProps, Variants, motion } from "motion/react"
+import { HTMLMotionProps, Variants, motion } from "framer-motion"
 import { cn } from "@/lib/utils"
 
 const curtainVariants: Variants = {

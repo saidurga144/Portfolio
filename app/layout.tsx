@@ -2,8 +2,9 @@ import type { Metadata } from "next";
 import { JetBrains_Mono, Montserrat, Poppins, Space_Grotesk, DM_Sans, Inter_Tight, Dancing_Script } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
+import StyledComponentsRegistry from "@/lib/styled-components-registry";
 
-const jetbrainsMono = JetBrains_Mono({ 
+const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
   variable: "--font-jetbrains-mono",
   weight: ["400", "500", "600", "700"],
@@ -46,12 +47,15 @@ const dancingScript = Dancing_Script({
 });
 
 export const metadata: Metadata = {
-  title: "Dungala Sai Kumar - Cybersecurity & Software Development Portfolio",
+  title: "Sai Kumar Dungala - Portfolio",
   description: "Computer Science Engineering student specializing in cybersecurity and secure software development with hands-on experience in AI/deep learning, malware analysis, network security, and full-stack web application security.",
   keywords: ["Cybersecurity", "Software Development", "Web Security", "AI", "Machine Learning", "Network Security"],
-  authors: [{ name: "Dungala Sai Kumar" }],
+  authors: [{ name: "Sai Kumar Dungala" }],
+  icons: {
+    icon: "/saikumar.png",
+  },
   openGraph: {
-    title: "Dungala Sai Kumar - Portfolio",
+    title: "Sai Kumar Dungala - Portfolio",
     description: "Cybersecurity Engineer | Secure Software Developer",
     type: "website",
   },
@@ -64,14 +68,23 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="scroll-smooth" suppressHydrationWarning>
-      <body className={`${jetbrainsMono.variable} ${montserrat.variable} ${poppins.variable} ${spaceGrotesk.variable} ${dmSans.variable} ${interTight.variable} ${dancingScript.variable}`}>
+      <head>
+        {/* Force dark theme on first visit — must be in <head> to run before hydration */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{if(!localStorage.getItem('portfolio-theme')){localStorage.setItem('portfolio-theme','dark');}}catch(e){}})();`,
+          }}
+        />
+      </head>
+      <body suppressHydrationWarning className={`${jetbrainsMono.variable} ${montserrat.variable} ${poppins.variable} ${spaceGrotesk.variable} ${dmSans.variable} ${interTight.variable} ${dancingScript.variable}`}>
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"
           enableSystem={false}
           disableTransitionOnChange={false}
+          storageKey="portfolio-theme"
         >
-          {children}
+          <StyledComponentsRegistry>{children}</StyledComponentsRegistry>
         </ThemeProvider>
       </body>
     </html>

@@ -19,90 +19,114 @@ interface TeamMemberCardProps {
 
 export default function TeamMemberCard({
   position = 'left',
-  jobPosition = 'Backend Engineer',
-  firstName = 'Jennie',
-  lastName = 'Garcia',
-  imageUrl = 'https://images.unsplash.com/photo-1526510747491-58f928ec870f?fm=jpg&q=60',
+  jobPosition = 'Cybersecurity Engineer · Full-Stack Developer',
+  firstName = 'Sai Kumar',
+  lastName = 'Dungala',
+  imageUrl = '/saikumar.png',
+  description = "I'm a tech-driven learner passionate about building real-world solutions. I enjoy exploring AI, cybersecurity, and innovative software development — blending creativity with technical precision to build things that not only perform, but also inspire.",
   className,
+  onCtaClick,
 }: TeamMemberCardProps) {
-  const fullName = `${firstName} ${lastName}`;
-  const isPositionRight = position === 'right';
+  const isRight = position === 'right';
 
   return (
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-      className={cn('relative my-8 sm:my-16 flex flex-col justify-center', className)}
+      transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+      className={cn('relative w-full', className)}
     >
       {/* Job position label */}
-      <motion.div
-        initial={{ opacity: 0, x: -20 }}
-        animate={{ opacity: 1, x: 0 }}
+      <motion.p
+        initial={{ opacity: 0, y: -8 }}
+        animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.1 }}
+        className="mb-4 text-[11px] font-medium uppercase tracking-[0.3em]"
+        style={{ color: 'var(--color-text-3)', fontFamily: 'var(--font-space-grotesk)' }}
       >
-        <p
-          className={cn(
-            'mb-4 text-xs font-medium tracking-[0.3em] uppercase',
-            isPositionRight && 'text-right'
-          )}
-          style={{ color: 'var(--color-text-3)' }}
-        >
-          {jobPosition}
-        </p>
-      </motion.div>
+        {jobPosition}
+      </motion.p>
 
-      {/* Responsive layout: stack on mobile, side-by-side on sm+ */}
-      <div className="flex flex-col sm:flex-row items-center sm:items-end sm:justify-end gap-4 sm:gap-0">
+      {/* ── Overlap container ── */}
+      <div className="relative w-full" style={{ minHeight: 'clamp(320px, 44vw, 520px)' }}>
 
-        {/* Portrait image — responsive sizing */}
+        {/* Portrait image — left ~42% of the container */}
         <motion.div
-          initial={{ opacity: 0, scale: 0.95, y: 30 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
-          className={cn(
-            'relative shrink-0 overflow-hidden rounded-xl',
-            isPositionRight && 'sm:order-1'
-          )}
+          initial={{ opacity: 0, scale: 0.97 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.8, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
+          className="absolute top-0 left-0 overflow-hidden"
           style={{
-            width: 'clamp(200px, 60vw, 360px)',
-            height: 'clamp(260px, 75vw, 500px)',
+            width: '80%',
+            height: '100%',
           }}
         >
-          <div
-            className="pointer-events-none absolute inset-0 z-10"
-            style={{ background: 'linear-gradient(to top, rgba(0,0,0,0.2) 0%, transparent 60%)' }}
-          />
           <img
             src={imageUrl}
-            alt={fullName}
-            className="h-full w-full object-cover duration-500 hover:scale-105"
+            alt={`${firstName} ${lastName}`}
+            className="h-full w-full object-cover object-top transition-transform duration-700 hover:scale-[1.03]"
           />
         </motion.div>
 
-        {/* Name block — overlaps image on sm+, stacks below on mobile */}
+        {/* Name — absolutely positioned, starting at ~28% from left so it overlaps image right edge */}
         <motion.div
-          initial={{ opacity: 0, x: 40 }}
+          initial={{ opacity: 0, x: 24 }}
           animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.6, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-          className={cn(
-            'z-20 flex flex-col',
-            'sm:-left-8 sm:relative',
-            isPositionRight ? 'sm:left-8 items-end' : 'items-start sm:items-start'
-          )}
+          transition={{ duration: 0.7, delay: 0.25, ease: [0.22, 1, 0.36, 1] }}
+          className="absolute"
+          style={{
+            left: '70%',
+            top: '40%',
+            transform: 'translateY(-75%)',
+            zIndex: 10,
+          }}
         >
           <p
-            className="font-extralight tracking-tight leading-[1.1]"
             style={{
+              fontFamily: 'var(--font-space-grotesk)',
+              fontSize: 'clamp(1.4rem, 3vw, 2.8rem)',
+              fontWeight: 300,
               color: 'var(--color-text-1)',
-              fontSize: 'clamp(2rem, 6vw, 3.5rem)',
+              lineHeight: 1.05,
+              letterSpacing: '-0.025em',
+              whiteSpace: 'nowrap',
             }}
           >
             {firstName}
-            <br />
-            <span className="font-normal">{lastName}</span>
+          </p>
+          <p
+            style={{
+              fontFamily: 'var(--font-space-grotesk)',
+              fontSize: 'clamp(1.6rem, 3.5vw, 3.2rem)',
+              fontWeight: 600,
+              color: 'var(--color-text-1)',
+              lineHeight: 1.0,
+              letterSpacing: '-0.03em',
+              whiteSpace: 'nowrap',
+            }}
+          >
+            {lastName}
           </p>
         </motion.div>
+
+        {/* Bio — bottom right, below the name */}
+        {description && (
+        <motion.p
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+          className="absolute text-sm leading-[1.85]"
+          style={{
+            left: '50%',
+            bottom: '6%',
+            width: '46%',
+            color: 'var(--color-text-2)',
+            fontFamily: 'var(--font-dm-sans)',
+          }}
+        >
+          {description}
+        </motion.p>
+        )}
       </div>
     </motion.div>
   );

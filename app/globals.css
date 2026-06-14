@@ -39,6 +39,33 @@
     --color-accent-cyan: #0A7A8F;
     --color-accent-purple: #6B3FAA;
     --shadow-card:       0 2px 12px rgba(46,42,37,0.08), 0 1px 3px rgba(46,42,37,0.05);
+
+    /* Project card tokens — light */
+    --project-card-bg:            #F4F0EA;
+    --project-card-bg-gradient:   #F4F0EA;
+    --project-card-border:        rgba(46,42,37,0.12);
+    --project-card-border-subtle: rgba(46,42,37,0.08);
+    --project-card-index:         rgba(46,42,37,0.08);
+    --project-card-text-1:        #2E2A25;
+    --project-card-text-2:        #5A5550;
+    --project-card-text-3:        #8A8480;
+    --project-card-btn-border:    rgba(46,42,37,0.25);
+
+    /* Skills card tokens — light */
+    --skills-card-bg-cyber:       linear-gradient(160deg, #1a2235 0%, #0f1e3d 60%, #0d1a2e 100%);
+    --skills-card-bg-backend:     linear-gradient(135deg, #1a1230 0%, #1e0a3e 50%, #1a1230 100%);
+    --skills-card-bg-standard:    #161b27;
+    --skills-card-border:         rgba(255,255,255,0.1);
+    --skills-card-text-1:         #ffffff;
+    --skills-card-text-2:         rgba(255,255,255,0.7);
+    --skills-card-text-3:         rgba(255,255,255,0.4);
+    --skills-card-pill-bg:        rgba(255,255,255,0.08);
+    --skills-card-pill-border:    rgba(255,255,255,0.12);
+    --skills-card-pill-text:      #ffffff;
+    --skills-card-video-opacity:  0.55;
+    --skills-card-video-opacity-hover: 0.75;
+    --skills-card-video-overlay:  linear-gradient(160deg, rgba(15,20,35,0.35) 0%, rgba(10,16,30,0.25) 50%, rgba(8,14,24,0.4) 100%);
+    --skills-card-video-overlay-hover: linear-gradient(160deg, rgba(10,14,28,0.2) 0%, rgba(15,10,30,0.15) 100%);
   }
 
   /* ─────────────────────────────────────────────
@@ -76,6 +103,33 @@
     --color-accent-cyan: #06B6D4;
     --color-accent-purple: #8B5CF6;
     --shadow-card:       none;
+
+    /* Project card tokens — dark */
+    --project-card-bg:            #0d1117;
+    --project-card-bg-gradient:   #0d1117;
+    --project-card-border:        rgba(255,255,255,0.08);
+    --project-card-border-subtle: rgba(255,255,255,0.07);
+    --project-card-index:         rgba(255,255,255,0.07);
+    --project-card-text-1:        #ffffff;
+    --project-card-text-2:        rgba(255,255,255,0.6);
+    --project-card-text-3:        rgba(255,255,255,0.35);
+    --project-card-btn-border:    rgba(255,255,255,0.28);
+
+    /* Skills card tokens — dark */
+    --skills-card-bg-cyber:       linear-gradient(160deg, #0d1117 0%, #0a1628 60%, #071020 100%);
+    --skills-card-bg-backend:     linear-gradient(135deg, #0d1117 0%, #1a0a2e 50%, #0d1117 100%);
+    --skills-card-bg-standard:    #0d1117;
+    --skills-card-border:         rgba(255,255,255,0.08);
+    --skills-card-text-1:         #ffffff;
+    --skills-card-text-2:         rgba(255,255,255,0.6);
+    --skills-card-text-3:         rgba(255,255,255,0.35);
+    --skills-card-pill-bg:        rgba(255,255,255,0.07);
+    --skills-card-pill-border:    rgba(255,255,255,0.1);
+    --skills-card-pill-text:      #ffffff;
+    --skills-card-video-opacity:  0.3;
+    --skills-card-video-opacity-hover: 0.55;
+    --skills-card-video-overlay:  linear-gradient(160deg, rgba(13,17,23,0.45) 0%, rgba(10,22,40,0.35) 50%, rgba(7,16,32,0.55) 100%);
+    --skills-card-video-overlay-hover: linear-gradient(160deg, rgba(13,10,30,0.3) 0%, rgba(26,10,46,0.2) 100%);
   }
 }
 
@@ -206,6 +260,7 @@
   letter-spacing: 0.01em;
 }
 
+/* Light mode typography overrides */
 :root:not(.dark) h1,
 :root:not(.dark) h2,
 :root:not(.dark) h3,
@@ -250,3 +305,159 @@
     color: transparent;
   }
 }
+
+/* ─────────────────────────────────────────────
+   ROCKET LOADER — keyframes + styles
+───────────────────────────────────────────── */
+@keyframes fazer1 { 0% { left: 0; } 100% { left: -80px; opacity: 0; } }
+@keyframes fazer2 { 0% { left: 0; } 100% { left: -100px; opacity: 0; } }
+@keyframes fazer3 { 0% { left: 0; } 100% { left: -50px; opacity: 0; } }
+@keyframes fazer4 { 0% { left: 0; } 100% { left: -150px; opacity: 0; } }
+
+@keyframes speeder {
+  0%   { transform: translate(2px,  1px) rotate(0deg);  }
+  10%  { transform: translate(-1px,-3px) rotate(-1deg); }
+  20%  { transform: translate(-2px, 0px) rotate(1deg);  }
+  30%  { transform: translate(1px,  2px) rotate(0deg);  }
+  40%  { transform: translate(1px, -1px) rotate(1deg);  }
+  50%  { transform: translate(-1px, 3px) rotate(-1deg); }
+  60%  { transform: translate(-1px, 1px) rotate(0deg);  }
+  70%  { transform: translate(3px,  1px) rotate(-1deg); }
+  80%  { transform: translate(-2px,-1px) rotate(1deg);  }
+  90%  { transform: translate(2px,  1px) rotate(0deg);  }
+  100% { transform: translate(1px, -2px) rotate(-1deg); }
+}
+@keyframes lf  { 0% { left: 200%; } 100% { left: -200%; opacity: 0; } }
+@keyframes lf2 { 0% { left: 200%; } 100% { left: -200%; opacity: 0; } }
+@keyframes lf3 { 0% { left: 200%; } 100% { left: -100%; opacity: 0; } }
+@keyframes lf4 { 0% { left: 200%; } 100% { left: -100%; opacity: 0; } }
+
+@keyframes moveClouds {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-200vw); }
+}
+
+@keyframes cloudFloat {
+  0%, 100% { transform: translateY(0) scaleX(1); }
+  50%       { transform: translateY(-8px) scaleX(1.04); }
+}
+
+/* ── Rocket inner ── */
+.rocket-loader-inner {
+  position: relative;
+  animation: speeder 0.4s linear infinite;
+  z-index: 2;
+}
+
+.rocket-exhaust {
+  position: absolute; top: 9px; left: -20px;
+  width: 50px; height: 8px;
+  border-radius: 4px;
+  background: rgba(6,182,212,0.1);
+  display: block;
+}
+.rocket-exhaust > span {
+  display: inline-block; width: 8px; height: 100%;
+  border-radius: 4px;
+  background: rgba(6,182,212,0.5);
+}
+.rocket-exhaust > span:nth-of-type(1) { animation: fazer1 0.8s linear infinite; }
+.rocket-exhaust > span:nth-of-type(2) { animation: fazer2 0.8s linear infinite; animation-delay: -0.3s; }
+.rocket-exhaust > span:nth-of-type(3) { animation: fazer3 0.8s linear infinite; animation-delay: -0.1s; }
+.rocket-exhaust > span:nth-of-type(4) { animation: fazer4 0.8s linear infinite; animation-delay: -0.5s; }
+
+.rocket-base {
+  position: relative; width: 100px; height: 34px;
+  border-radius: 50% 8px 8px 50% / 50% 8px 8px 50%;
+  background: linear-gradient(135deg, #67e8f9, #06B6D4 50%, #0ea5e9);
+  box-shadow:
+    0 0 30px rgba(6,182,212,0.7),
+    0 0 60px rgba(6,182,212,0.35),
+    0 0 100px rgba(6,182,212,0.15);
+}
+
+.rocket-thruster {
+  position: absolute; right: -18px; top: 50%;
+  transform: translateY(-50%);
+  width: 22px; height: 22px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #ffffff 0%, #67e8f9 50%, rgba(6,182,212,0.3) 100%);
+  box-shadow: 0 0 16px rgba(6,182,212,1), 0 0 30px rgba(6,182,212,0.6);
+  display: block;
+}
+
+.rocket-face {
+  position: absolute; left: 10px; top: 50%; transform: translateY(-50%);
+  width: 16px; height: 16px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #ffffff 0%, #e0f9ff 40%, #06B6D4 100%);
+  box-shadow: 0 0 12px rgba(103,232,249,1), 0 0 24px rgba(6,182,212,0.8);
+}
+
+/* ── Speed lines ── */
+.rocket-longfazers {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 500px; height: 60px;
+  pointer-events: none;
+  z-index: 1;
+}
+.rocket-longfazers > span {
+  position: absolute; height: 2px;
+  border-radius: 1px;
+  opacity: 0.7;
+}
+.rocket-longfazers > span:nth-of-type(1) {
+  width: 260px; top: 10px;
+  background: linear-gradient(to left, rgba(6,182,212,0.8), transparent);
+  animation: lf 0.55s linear infinite;
+}
+.rocket-longfazers > span:nth-of-type(2) {
+  width: 340px; top: 24px;
+  background: linear-gradient(to left, rgba(103,232,249,0.6), transparent);
+  animation: lf2 0.75s linear infinite; animation-delay: -0.3s;
+}
+.rocket-longfazers > span:nth-of-type(3) {
+  width: 180px; top: 38px;
+  background: linear-gradient(to left, rgba(6,182,212,0.5), transparent);
+  animation: lf3 0.55s linear infinite; animation-delay: -0.1s;
+}
+.rocket-longfazers > span:nth-of-type(4) {
+  width: 290px; top: 50px;
+  background: linear-gradient(to left, rgba(103,232,249,0.4), transparent);
+  animation: lf4 0.45s linear infinite; animation-delay: -0.4s;
+}
+
+/* ── Clouds ── */
+.rocket-clouds {
+  position: absolute; inset: 0;
+  overflow: hidden; pointer-events: none;
+  z-index: 0;
+  animation: moveClouds 18s linear infinite;
+}
+.rocket-cloud {
+  position: absolute;
+  border-radius: 50px;
+  background: rgba(6,182,212,0.06);
+  box-shadow: 0 0 20px rgba(6,182,212,0.08);
+  animation: cloudFloat 6s ease-in-out infinite;
+}
+.rocket-cloud::before, .rocket-cloud::after {
+  content: ""; position: absolute;
+  border-radius: 50%;
+  background: inherit;
+}
+.rocket-cloud1 { width: 200px; height: 60px; top: 20%; left: 10%; animation-delay: 0s; }
+.rocket-cloud1::before { width: 80px; height: 80px; top: -40px; left: 30px; }
+.rocket-cloud1::after  { width: 60px; height: 60px; top: -30px; left: 90px; }
+.rocket-cloud2 { width: 160px; height: 50px; top: 55%; left: 65%; animation-delay: -2s; }
+.rocket-cloud2::before { width: 60px; height: 60px; top: -30px; left: 20px; }
+.rocket-cloud2::after  { width: 50px; height: 50px; top: -25px; left: 70px; }
+.rocket-cloud3 { width: 120px; height: 40px; top: 35%; left: 40%; animation-delay: -4s; }
+.rocket-cloud3::before { width: 50px; height: 50px; top: -25px; left: 15px; }
+.rocket-cloud4 { width: 140px; height: 45px; top: 70%; left: 20%; animation-delay: -1s; }
+.rocket-cloud4::before { width: 55px; height: 55px; top: -28px; left: 25px; }
+.rocket-cloud5 { width: 180px; height: 55px; top: 15%; left: 75%; animation-delay: -3s; }
+.rocket-cloud5::before { width: 70px; height: 70px; top: -35px; left: 35px; }
+.rocket-cloud5::after  { width: 55px; height: 55px; top: -28px; left: 85px; }

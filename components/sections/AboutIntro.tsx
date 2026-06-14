@@ -2,6 +2,7 @@
 
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
+import { ParallaxText } from "@/components/ui/parallax-text-scroll";
 
 export function AboutIntro() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -14,13 +15,13 @@ export function AboutIntro() {
   /* ── Scroll-linked transforms ── */
   // Words drift apart horizontally as user scrolls through
   const aboutX = useTransform(scrollYProgress, [0, 1], ["-3%", "-8%"]);
-  const meX    = useTransform(scrollYProgress, [0, 1], ["3%",  "8%"]);
+  const meX = useTransform(scrollYProgress, [0, 1], ["3%", "8%"]);
 
   // Both words drift upward with parallax
   const wordsY = useTransform(scrollYProgress, [0, 1], ["8%", "-8%"]);
 
   // Scale up slightly as section enters, back to normal as it leaves
-  const scale  = useTransform(scrollYProgress, [0, 0.4, 0.6, 1], [0.92, 1, 1, 0.94]);
+  const scale = useTransform(scrollYProgress, [0, 0.4, 0.6, 1], [0.92, 1, 1, 0.94]);
 
   // Fade in on enter, fade out on exit
   const opacity = useTransform(scrollYProgress, [0, 0.12, 0.82, 1], [0, 1, 1, 0]);
@@ -43,6 +44,24 @@ export function AboutIntro() {
           filter: "blur(50px)",
         }}
       />
+
+      {/* Background Parallax Scroll Text */}
+      <div className="absolute inset-0 z-0 flex flex-col justify-center gap-12 pointer-events-none select-none overflow-hidden py-16">
+        <ParallaxText 
+          baseVelocity={-2} 
+          className="text-[10vw] font-black text-transparent leading-none"
+          style={{ WebkitTextStroke: "1.5px rgba(255,255,255,0.18)" }}
+        >
+          • ABOUT ME • WHO AM I ? • MY BACKGROUND
+        </ParallaxText>
+        <ParallaxText 
+          baseVelocity={2} 
+          className="text-[10vw] font-black text-transparent leading-none"
+          style={{ WebkitTextStroke: "1.5px rgba(139,92,246,0.28)" }}
+        >
+          • CYBERSECURITY • FULL STACK DEVELOPER • SOC ANALYST
+        </ParallaxText>
+      </div>
 
       {/* ── Text row — centered ── */}
       <motion.div
