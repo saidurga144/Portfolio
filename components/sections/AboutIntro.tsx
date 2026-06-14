@@ -1,11 +1,20 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { ParallaxText } from "@/components/ui/parallax-text-scroll";
+import { useTheme } from "next-themes";
 
 export function AboutIntro() {
   const sectionRef = useRef<HTMLElement>(null);
+  const { resolvedTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  const isDark = !mounted || resolvedTheme === "dark";
 
   const { scrollYProgress } = useScroll({
     target: sectionRef,
@@ -50,14 +59,14 @@ export function AboutIntro() {
         <ParallaxText 
           baseVelocity={-2} 
           className="text-[10vw] font-black text-transparent leading-none"
-          style={{ WebkitTextStroke: "1.5px rgba(255,255,255,0.18)" }}
+          style={{ WebkitTextStroke: isDark ? "1.5px rgba(255,255,255,0.14)" : "1.5px rgba(0,0,0,0.1)" }}
         >
           • ABOUT ME • WHO AM I ? • MY BACKGROUND
         </ParallaxText>
         <ParallaxText 
           baseVelocity={2} 
           className="text-[10vw] font-black text-transparent leading-none"
-          style={{ WebkitTextStroke: "1.5px rgba(139,92,246,0.28)" }}
+          style={{ WebkitTextStroke: isDark ? "1.5px rgba(139,92,246,0.22)" : "1.5px rgba(139,92,246,0.2)" }}
         >
           • CYBERSECURITY • FULL STACK DEVELOPER • SOC ANALYST
         </ParallaxText>
