@@ -33,9 +33,9 @@
     --color-surface:     #F4F0EA;
     --color-surface-2:   #EDE8E0;
     --color-border:      rgba(46,42,37,0.12);
-    --color-text-1:      #2E2A25;
-    --color-text-2:      #5A5550;
-    --color-text-3:      #8A8480;
+    --color-text-1:      #000000;
+    --color-text-2:      #1c1917;
+    --color-text-3:      #44403c;
     --color-accent-cyan: #0A7A8F;
     --color-accent-purple: #6B3FAA;
     --shadow-card:       0 2px 12px rgba(46,42,37,0.08), 0 1px 3px rgba(46,42,37,0.05);

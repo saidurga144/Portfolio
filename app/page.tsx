@@ -14,6 +14,7 @@ import { Resume }      from "@/components/sections/Resume";
 import { Contact }     from "@/components/sections/Contact";
 import { Footer }      from "@/components/Footer";
 import { CustomCursor } from "@/components/ui/custom-cursor";
+import { MouseFollowingEyes } from "@/components/ui/mouse-following-eyes";
 import { CinematicLanding } from "@/components/ui/cinematic-landing";
 
 export default function HomePage() {
@@ -46,6 +47,9 @@ export default function HomePage() {
             style={{ backgroundColor: "var(--surface-1)" }}
           >
             <CustomCursor />
+            <div className="fixed top-[76px] left-1/2 -translate-x-1/2 z-[110] pointer-events-none scale-[0.42] origin-center">
+              <MouseFollowingEyes />
+            </div>
             <Navigation />
             <main>
               <Hero />

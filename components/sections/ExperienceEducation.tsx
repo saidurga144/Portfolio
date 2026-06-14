@@ -88,7 +88,7 @@ export function ExperienceEducation() {
         {/* ── 02 Project ── */}
         <FlowSection
           aria-label="Featured Project"
-          style={{ backgroundColor: '#0d1117', color: '#ffffff' }}
+          style={{ backgroundColor: 'var(--project-card-bg)', color: 'var(--color-text-1)' }}
         >
           <p
             className="text-xs font-bold uppercase tracking-[0.2em]"
@@ -96,31 +96,31 @@ export function ExperienceEducation() {
           >
             02 — Featured Project
           </p>
-
-          <hr className="border-none border-t h-px" style={{ background: 'rgba(255,255,255,0.1)' }} />
-
+ 
+          <hr className="border-none border-t h-px" style={{ background: 'var(--color-border)', opacity: 0.6 }} />
+ 
           <div>
             <h2
               className="font-black uppercase tracking-tight leading-[0.88]"
               style={{
                 fontFamily: 'var(--font-space-grotesk)',
                 fontSize: 'clamp(2rem, 4vw, 4.5rem)',
-                color: '#ffffff',
+                color: 'var(--color-text-1)',
                 letterSpacing: '-0.03em',
               }}
             >
               Agri<br />Predict
             </h2>
           </div>
-
-          <hr className="border-none border-t h-px" style={{ background: 'rgba(255,255,255,0.1)' }} />
-
+ 
+          <hr className="border-none border-t h-px" style={{ background: 'var(--color-border)', opacity: 0.6 }} />
+ 
           <div className="flex flex-wrap gap-[3vw]">
             <div className="min-w-[180px] flex-1">
               <p className="mb-2 text-sm font-bold uppercase tracking-wider" style={{ color: '#8B5CF6', fontFamily: 'var(--font-space-grotesk)' }}>
                 What it does
               </p>
-              <p style={{ color: 'rgba(255,255,255,0.65)', fontFamily: 'var(--font-dm-sans)', fontSize: 'clamp(0.85rem,1.3vw,1.05rem)', lineHeight: 1.7 }}>
+              <p style={{ color: 'var(--color-text-2)', fontFamily: 'var(--font-dm-sans)', fontSize: 'clamp(0.85rem,1.3vw,1.05rem)', lineHeight: 1.7, opacity: 0.85 }}>
                 ML-powered crop recommendation using soil &amp; weather data.
                 Random Forest classifier with 96%+ accuracy across 12 crop types.
               </p>
@@ -129,7 +129,7 @@ export function ExperienceEducation() {
               <p className="mb-2 text-sm font-bold uppercase tracking-wider" style={{ color: '#8B5CF6', fontFamily: 'var(--font-space-grotesk)' }}>
                 Stack
               </p>
-              <p style={{ color: 'rgba(255,255,255,0.65)', fontFamily: 'var(--font-dm-sans)', fontSize: 'clamp(0.85rem,1.3vw,1.05rem)', lineHeight: 1.7 }}>
+              <p style={{ color: 'var(--color-text-2)', fontFamily: 'var(--font-dm-sans)', fontSize: 'clamp(0.85rem,1.3vw,1.05rem)', lineHeight: 1.7, opacity: 0.85 }}>
                 Python · Flask · React · Vercel
               </p>
             </div>
@@ -137,17 +137,17 @@ export function ExperienceEducation() {
               <p className="mb-2 text-sm font-bold uppercase tracking-wider" style={{ color: '#8B5CF6', fontFamily: 'var(--font-space-grotesk)' }}>
                 Period
               </p>
-              <p style={{ color: 'rgba(255,255,255,0.65)', fontFamily: 'var(--font-dm-sans)', fontSize: 'clamp(0.85rem,1.3vw,1.05rem)', lineHeight: 1.7 }}>
+              <p style={{ color: 'var(--color-text-2)', fontFamily: 'var(--font-dm-sans)', fontSize: 'clamp(0.85rem,1.3vw,1.05rem)', lineHeight: 1.7, opacity: 0.85 }}>
                 Jan 2026 — Feb 2026
               </p>
             </div>
           </div>
-
-          <hr className="border-none border-t h-px" style={{ background: 'rgba(255,255,255,0.1)' }} />
-
+ 
+          <hr className="border-none border-t h-px" style={{ background: 'var(--color-border)', opacity: 0.6 }} />
+ 
           <p
             className="mt-auto max-w-[55ch] font-normal leading-relaxed"
-            style={{ color: 'rgba(255,255,255,0.7)', fontFamily: 'var(--font-dm-sans)', fontSize: 'clamp(1rem,2.2vw,1.6rem)' }}
+            style={{ color: 'var(--color-text-2)', fontFamily: 'var(--font-dm-sans)', fontSize: 'clamp(1rem,2.2vw,1.6rem)' }}
           >
             Empowering farmers with data-driven crop selection. Reduced guesswork for
             smallholder farmers — fully deployed and mobile-friendly.

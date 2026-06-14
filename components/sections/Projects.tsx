@@ -78,24 +78,24 @@ const projects = [
   {
     id: "project-4",
     index: "04",
-    tag: "WEB APP",
+    tag: "SECURITY",
     name: "Clarionet",
     url: "https://clarionet.vercel.app",
     tech: ["React", "TypeScript", "Vercel"],
     accent: "#10B981",
-    icon: Target,
+    icon: Shield,
     previewImage: "https://clarionet.vercel.app/og-image.png",
     why: {
-      headline: "Coming soon — details being added.",
-      body: "This project is live and being documented. Check back shortly for the full story behind it.",
+      headline: "Educational vulnerability demonstration.",
+      body: "I developed this tool purely for educational purposes—to demonstrate how vulnerable mobile devices can be if left unprotected, so developers understand why strong PINs and multi-factor authentication are essential.",
     },
     how: {
-      headline: "Details coming soon.",
-      body: "Implementation details and technical write-up will be added here.",
+      headline: "ADB PIN brute force simulator.",
+      body: "It uses ADB to simulate a brute force attack on a device PIN in a controlled, isolated lab environment. This automated process shows how attackers could exploit weak PINs, but it is never used on real devices without consent.",
     },
     achieves: {
-      headline: "Live and deployed.",
-      body: "Visit the live site at clarionet.vercel.app to explore the project.",
+      headline: "Proactive mobile security education.",
+      body: "It helps educate security teams and developers about real risks, so they proactively strengthen device security, ensuring better protection against brute force attacks in real-world scenarios.",
     },
   },
 ];

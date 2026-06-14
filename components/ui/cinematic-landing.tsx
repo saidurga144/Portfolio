@@ -148,7 +148,7 @@ export function CinematicLanding({ onEnter }: { onEnter: () => void }) {
   const welcomeStyle: React.CSSProperties = {
     fontFamily: "var(--font-dancing-script), cursive",
     fontWeight: 700,
-    color: isDark ? "#ffffff" : "var(--color-text-1)",
+    color: isDark ? "#ffffff" : "#000000",
     letterSpacing: "0.02em",
     lineHeight: 1,
     fontSize: "clamp(3.5rem, 10vw, 9rem)",
@@ -165,21 +165,17 @@ export function CinematicLanding({ onEnter }: { onEnter: () => void }) {
           "0 0 300px rgba(140,200,255,0.15)",
           "0 0 500px rgba(6,182,212,0.08)",
         ].join(", ")
-      : [
-          "0 0 12px rgba(10,122,143,0.3)",
-          "0 0 30px rgba(10,122,143,0.2)",
-          "0 0 60px rgba(107,63,170,0.12)",
-        ].join(", "),
+      : "none",
     filter: isDark
       ? "drop-shadow(0 0 18px rgba(255,255,255,0.55)) drop-shadow(0 0 60px rgba(200,230,255,0.25))"
-      : "drop-shadow(0 0 18px rgba(10,122,143,0.2)) drop-shadow(0 0 60px rgba(107,63,170,0.1))",
+      : "none",
     willChange: "transform, opacity, filter",
   };
 
   const subheadingStyle: React.CSSProperties = {
     fontFamily: "var(--font-space-grotesk), sans-serif",
     fontWeight: 500,
-    color: isDark ? "#ffffff" : "var(--color-text-1)",
+    color: isDark ? "#ffffff" : "#000000",
     letterSpacing: "0.35em",
     lineHeight: 1,
     fontSize: "clamp(0.75rem, 2vw, 1.5rem)",
@@ -188,16 +184,16 @@ export function CinematicLanding({ onEnter }: { onEnter: () => void }) {
     MozOsxFontSmoothing: "grayscale",
     textShadow: isDark
       ? "0 0 20px rgba(255,255,255,0.6), 0 0 40px rgba(255,255,255,0.3)"
-      : "0 0 20px rgba(10,122,143,0.25), 0 0 40px rgba(46,42,37,0.15)",
+      : "none",
     filter: isDark
       ? "drop-shadow(0 0 10px rgba(255,255,255,0.3))"
-      : "drop-shadow(0 0 10px rgba(10,122,143,0.15))",
+      : "none",
     willChange: "transform, opacity, filter",
   };
 
   const subStyle: React.CSSProperties = {
     fontFamily: "var(--font-dm-sans), sans-serif",
-    color: isDark ? "rgba(255,255,255,0.45)" : "rgba(46,42,37,0.55)",
+    color: isDark ? "rgba(255,255,255,0.45)" : "#000000",
     letterSpacing: "0.08em",
     fontSize: "1.4rem",
   };
@@ -221,7 +217,7 @@ export function CinematicLanding({ onEnter }: { onEnter: () => void }) {
           style={{ backgroundColor: isDark ? "#000000" : "var(--color-bg)" }}
         >
           {/* Spider cursor throughout the entire landing page */}
-          <SpiderCursor />
+          <SpiderCursor isDark={isDark} />
 
           {/* Rocket loader — large centered display during phase 0, fades as flare fires */}
           <RocketLoader visible={phase === 0} />
@@ -378,10 +374,10 @@ export function CinematicLanding({ onEnter }: { onEnter: () => void }) {
               transition={{ duration: 1.0, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
               className="mb-6 flex items-center justify-center"
               style={{
-                color: isDark ? "rgba(255,255,255,0.9)" : "var(--color-text-1)",
+                color: isDark ? "rgba(255,255,255,0.9)" : "#000000",
                 filter: isDark
                   ? "drop-shadow(0 0 12px rgba(255,255,255,0.5)) drop-shadow(0 0 30px rgba(255,255,255,0.2))"
-                  : "drop-shadow(0 0 12px rgba(10,122,143,0.25)) drop-shadow(0 0 30px rgba(10,122,143,0.1))",
+                  : "none",
               }}
             >
               <SmileyIcon />
@@ -402,11 +398,8 @@ export function CinematicLanding({ onEnter }: { onEnter: () => void }) {
               {/* "TO MY WORLD" text — always visible, rocket launches away on phase 3 */}
               <motion.p
                 initial={{ opacity: 0, clipPath: "inset(0 100% 0 0)" }}
-                animate={phase >= 3
-                  ? { opacity: 0, clipPath: "inset(0 100% 0 0)" }
-                  : { opacity: 1, clipPath: "inset(0 0% 0 0)" }
-                }
-                transition={{ duration: phase >= 3 ? 0.4 : 1.2, delay: phase >= 3 ? 0 : 0.8, ease: [0.77, 0, 0.175, 1] }}
+                animate={{ opacity: 1, clipPath: "inset(0 0% 0 0)" }}
+                transition={{ duration: 1.2, delay: 0.8, ease: [0.77, 0, 0.175, 1] }}
                 style={subheadingStyle}
               >
                 TO MY WORLD
@@ -434,20 +427,14 @@ export function CinematicLanding({ onEnter }: { onEnter: () => void }) {
                 animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
                 transition={{ duration: 0.9, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
                 style={{
-                  color: isDark ? "rgba(255,255,255,0.9)" : "var(--color-text-1)",
+                  color: isDark ? "rgba(255,255,255,0.9)" : "#000000",
                   filter: isDark
                     ? "drop-shadow(0 0 10px rgba(255,255,255,0.45))"
-                    : "drop-shadow(0 0 10px rgba(10,122,143,0.2))",
+                    : "none",
                 }}
               >
                 <SmileyIcon />
               </motion.div>
-              <span
-                className="pt-1 text-[10px] tracking-[0.12em] sm:text-[11px]"
-                style={{ ...subStyle, fontSize: undefined, color: isDark ? "rgba(6,182,212,0.35)" : "rgba(10,122,143,0.55)" }}
-              >
-                v1.0 · 2025
-              </span>
             </div>
 
             {/* Center — title + horizontal loading */}
@@ -469,11 +456,8 @@ export function CinematicLanding({ onEnter }: { onEnter: () => void }) {
                 {/* TO MY WORLD — always visible, wipes away on phase 3 */}
                 <motion.p
                   initial={{ opacity: 0, clipPath: "inset(0 100% 0 0)" }}
-                  animate={phase >= 3
-                    ? { opacity: 0, clipPath: "inset(0 100% 0 0)" }
-                    : { opacity: 1, clipPath: "inset(0 0% 0 0)" }
-                  }
-                  transition={{ duration: phase >= 3 ? 0.4 : 1.2, delay: phase >= 3 ? 0 : 0.8, ease: [0.77, 0, 0.175, 1] }}
+                  animate={{ opacity: 1, clipPath: "inset(0 0% 0 0)" }}
+                  transition={{ duration: 1.2, delay: 0.8, ease: [0.77, 0, 0.175, 1] }}
                   className="select-none"
                   style={{
                     ...subheadingStyle,
@@ -496,7 +480,7 @@ export function CinematicLanding({ onEnter }: { onEnter: () => void }) {
             <div className="relative z-20 shrink-0 pb-0.5">
               <span
                 className="text-[10px] tracking-[0.08em]"
-                style={{ ...subStyle, fontSize: undefined, color: isDark ? "rgba(255,255,255,0.12)" : "rgba(46,42,37,0.2)" }}
+                style={{ ...subStyle, fontSize: undefined, color: isDark ? "rgba(255,255,255,0.12)" : "rgba(0,0,0,0.5)" }}
               >
                 Portfolio · OS
               </span>
@@ -511,22 +495,17 @@ export function CinematicLanding({ onEnter }: { onEnter: () => void }) {
               className={`absolute ${pos} pointer-events-none z-[5]`}
             >
               <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-                <path d="M0 7 L0 0 L7 0" stroke={isDark ? "rgba(6,182,212,0.2)" : "rgba(10,122,143,0.3)"} strokeWidth="1" />
+                <path d="M0 7 L0 0 L7 0" stroke={isDark ? "rgba(6,182,212,0.2)" : "rgba(0,0,0,0.4)"} strokeWidth="1" />
               </svg>
             </motion.div>
           ))}
 
           {/* ── System labels (desktop only — mobile uses in-layout labels) ── */}
-          <motion.span initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1, delay: 0.5 }}
-            className="absolute top-5 right-12 z-[10] pointer-events-none hidden lg:block"
-            style={{ ...subStyle, fontSize: "0.6rem", color: isDark ? "rgba(6,182,212,0.25)" : "rgba(10,122,143,0.45)" }}
-          >
-            v1.0 · 2025
-          </motion.span>
+
 
           <motion.span initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1, delay: 0.7 }}
             className="absolute bottom-5 left-12 z-[10] pointer-events-none hidden lg:block"
-            style={{ ...subStyle, fontSize: "0.6rem", color: isDark ? "rgba(255,255,255,0.1)" : "rgba(46,42,37,0.2)" }}
+            style={{ ...subStyle, fontSize: "0.6rem", color: isDark ? "rgba(255,255,255,0.1)" : "rgba(0,0,0,0.5)" }}
           >
             Portfolio · OS
           </motion.span>
@@ -537,8 +516,8 @@ export function CinematicLanding({ onEnter }: { onEnter: () => void }) {
             transition={{ duration: 1, delay: phase >= 4 ? 0.3 : 99 }}
             className="absolute bottom-5 left-1/2 -translate-x-1/2 hidden lg:flex flex-col items-center gap-1.5 pointer-events-none z-[10]"
           >
-            <div className="h-5 w-px" style={{ background: isDark ? "linear-gradient(to bottom, transparent, rgba(6,182,212,0.3))" : "linear-gradient(to bottom, transparent, rgba(10,122,143,0.3))" }} />
-            <span style={{ ...subStyle, fontSize: "0.6rem", color: isDark ? "rgba(255,255,255,0.15)" : "rgba(46,42,37,0.3)" }}>
+            <div className="h-5 w-px" style={{ background: isDark ? "linear-gradient(to bottom, transparent, rgba(6,182,212,0.3))" : "linear-gradient(to bottom, transparent, rgba(0,0,0,0.3))" }} />
+            <span style={{ ...subStyle, fontSize: "0.6rem", color: isDark ? "rgba(255,255,255,0.15)" : "rgba(0,0,0,0.6)" }}>
               Sai Kumar Dungala
             </span>
           </motion.div>

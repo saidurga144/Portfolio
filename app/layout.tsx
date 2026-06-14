@@ -69,10 +69,10 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth" suppressHydrationWarning>
       <head>
-        {/* Force dark theme on first visit — must be in <head> to run before hydration */}
+        {/* Force dark theme on every page load/refresh */}
         <script
           dangerouslySetInnerHTML={{
-            __html: `(function(){try{if(!localStorage.getItem('portfolio-theme')){localStorage.setItem('portfolio-theme','dark');}}catch(e){}})();`,
+            __html: `(function(){try{localStorage.setItem('portfolio-theme','dark');}catch(e){}})();`,
           }}
         />
       </head>
