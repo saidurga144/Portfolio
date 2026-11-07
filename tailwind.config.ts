@@ -51,7 +51,7 @@ const config: Config = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-        // Custom portfolio colors
+
         'portfolio-black': '#0a0a0a',
         'portfolio-purple': '#4a0e4e',
         'portfolio-accent': '#6a1b9a',

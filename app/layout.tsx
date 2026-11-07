@@ -1,54 +1,11 @@
 import type { Metadata } from "next";
-import { JetBrains_Mono, Montserrat, Poppins, Space_Grotesk, DM_Sans, Inter_Tight, Dancing_Script } from "next/font/google";
 import "./globals.css";
+import { AccessibleMotion } from "@/components/motion-config";
 import { ThemeProvider } from "@/components/theme-provider";
-import StyledComponentsRegistry from "@/lib/styled-components-registry";
-
-const jetbrainsMono = JetBrains_Mono({
-  subsets: ["latin"],
-  variable: "--font-jetbrains-mono",
-  weight: ["400", "500", "600", "700"],
-});
-
-const montserrat = Montserrat({
-  subsets: ["latin"],
-  variable: "--font-montserrat",
-  weight: ["300", "400", "500", "600", "700", "800", "900"],
-});
-
-const poppins = Poppins({
-  subsets: ["latin"],
-  variable: "--font-poppins",
-  weight: ["300", "400", "500", "600", "700", "800", "900"],
-});
-
-const spaceGrotesk = Space_Grotesk({
-  subsets: ["latin"],
-  variable: "--font-space-grotesk",
-  weight: ["300", "400", "500", "600", "700"],
-});
-
-const dmSans = DM_Sans({
-  subsets: ["latin"],
-  variable: "--font-dm-sans",
-  weight: ["300", "400", "500", "600", "700"],
-});
-
-const interTight = Inter_Tight({
-  subsets: ["latin"],
-  variable: "--font-inter-tight",
-  weight: ["400", "500", "600", "700", "800", "900"],
-});
-
-const dancingScript = Dancing_Script({
-  subsets: ["latin"],
-  variable: "--font-dancing-script",
-  weight: ["400", "500", "600", "700"],
-});
 
 export const metadata: Metadata = {
   title: "Sai Kumar Dungala - Portfolio",
-  description: "Computer Science Engineering student specializing in cybersecurity and secure software development with hands-on experience in AI/deep learning, malware analysis, network security, and full-stack web application security.",
+  description: "Portfolio of Sai Kumar Dungala, a Computer Science Engineering student focused on cybersecurity and software development.",
   keywords: ["Cybersecurity", "Software Development", "Web Security", "AI", "Machine Learning", "Network Security"],
   authors: [{ name: "Sai Kumar Dungala" }],
   icons: {
@@ -56,7 +13,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: "Sai Kumar Dungala - Portfolio",
-    description: "Cybersecurity Engineer | Secure Software Developer",
+    description: "Computer Science Engineering student focused on cybersecurity and software development.",
     type: "website",
   },
 };
@@ -68,24 +25,18 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="scroll-smooth" suppressHydrationWarning>
-      <head>
-        {/* Force dark theme on every page load/refresh */}
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `(function(){try{localStorage.setItem('portfolio-theme','dark');}catch(e){}})();`,
-          }}
-        />
-      </head>
-      <body suppressHydrationWarning className={`${jetbrainsMono.variable} ${montserrat.variable} ${poppins.variable} ${spaceGrotesk.variable} ${dmSans.variable} ${interTight.variable} ${dancingScript.variable}`}>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="dark"
-          enableSystem={false}
-          disableTransitionOnChange={false}
-          storageKey="portfolio-theme"
-        >
-          <StyledComponentsRegistry>{children}</StyledComponentsRegistry>
-        </ThemeProvider>
+      <body>
+        <AccessibleMotion>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="dark"
+            forcedTheme="dark"
+            enableSystem={false}
+            disableTransitionOnChange={false}
+          >
+            {children}
+          </ThemeProvider>
+        </AccessibleMotion>
       </body>
     </html>
   );

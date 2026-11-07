@@ -1,122 +1,24 @@
-"use client";
-
-import { useRef, useState, useEffect } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
-import { ParallaxText } from "@/components/ui/parallax-text-scroll";
-import { useTheme } from "next-themes";
+const links = [
+  { label: "About", href: "#about" },
+  { label: "Experience", href: "#experience" },
+  { label: "Education", href: "#education" },
+  { label: "Skills", href: "#skills" },
+];
 
 export function AboutIntro() {
-  const sectionRef = useRef<HTMLElement>(null);
-  const { resolvedTheme } = useTheme();
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  const isDark = !mounted || resolvedTheme === "dark";
-
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start end", "end start"],
-  });
-
-  /* ── Scroll-linked transforms ── */
-  // Words drift apart horizontally as user scrolls through
-  const aboutX = useTransform(scrollYProgress, [0, 1], ["-3%", "-8%"]);
-  const meX = useTransform(scrollYProgress, [0, 1], ["3%", "8%"]);
-
-  // Both words drift upward with parallax
-  const wordsY = useTransform(scrollYProgress, [0, 1], ["8%", "-8%"]);
-
-  // Scale up slightly as section enters, back to normal as it leaves
-  const scale = useTransform(scrollYProgress, [0, 0.4, 0.6, 1], [0.92, 1, 1, 0.94]);
-
-  // Fade in on enter, fade out on exit
-  const opacity = useTransform(scrollYProgress, [0, 0.12, 0.82, 1], [0, 1, 1, 0]);
-
-  // Blur clears on enter, returns on exit
-  const blurVal = useTransform(scrollYProgress, [0, 0.15, 0.85, 1], [16, 0, 0, 10]);
-
   return (
-    <section
-      ref={sectionRef}
-      className="relative overflow-hidden flex items-center justify-center"
-      style={{ minHeight: "80vh", backgroundColor: "var(--color-bg)" }}
-    >
-      {/* Centered purple glow */}
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          background:
-            "radial-gradient(ellipse 55% 45% at 50% 50%, rgba(139,92,246,0.12) 0%, transparent 70%)",
-          filter: "blur(50px)",
-        }}
-      />
-
-      {/* Background Parallax Scroll Text */}
-      <div className="absolute inset-0 z-0 flex flex-col justify-center gap-12 pointer-events-none select-none overflow-hidden py-16">
-        <ParallaxText 
-          baseVelocity={-2} 
-          className="text-[10vw] font-black text-transparent leading-none"
-          style={{ WebkitTextStroke: isDark ? "1.5px rgba(255,255,255,0.14)" : "1.5px rgba(0,0,0,0.1)" }}
-        >
-          • ABOUT ME • WHO AM I ? • MY BACKGROUND
-        </ParallaxText>
-        <ParallaxText 
-          baseVelocity={2} 
-          className="text-[10vw] font-black text-transparent leading-none"
-          style={{ WebkitTextStroke: isDark ? "1.5px rgba(139,92,246,0.22)" : "1.5px rgba(139,92,246,0.2)" }}
-        >
-          • CYBERSECURITY • FULL STACK DEVELOPER • SOC ANALYST
-        </ParallaxText>
+    <section className="portfolio-intro" aria-label="Portfolio overview">
+      <div className="portfolio-intro-inner mx-auto grid max-w-[1440px] gap-9 px-6 py-16 sm:px-10 md:grid-cols-[1fr_auto] md:items-end lg:px-20 lg:py-20">
+        <div className="max-w-[850px]">
+          <p className="section-eyebrow"><span>01</span> A quick introduction</p>
+          <h2 className="portfolio-intro-title">Cybersecurity and software, <span>grounded in computer science.</span></h2>
+          <p className="portfolio-intro-copy">I&apos;m studying Computer Science Engineering with a cybersecurity focus at Kalasalingam Academy of Research and Education.</p>
+        </div>
+        <nav className="portfolio-section-pills flex flex-wrap gap-2 md:max-w-[310px] md:justify-end" aria-label="Explore portfolio sections">
+          {links.map((link) => <a href={link.href} key={link.label}>{link.label}<span aria-hidden="true">↗</span></a>)}
+        </nav>
       </div>
-
-      {/* ── Text row — centered ── */}
-      <motion.div
-        style={{ opacity, scale, y: wordsY }}
-        className="relative z-10 flex items-baseline justify-center select-none w-full px-4"
-      >
-        {/* ABOUT */}
-        <motion.span
-          style={{
-            x: aboutX,
-            fontFamily: "var(--font-inter-tight), var(--font-space-grotesk), sans-serif",
-            fontSize: "clamp(2.8rem, 9vw, 9rem)",
-            letterSpacing: "-0.03em",
-            color: "var(--color-text-1)",
-            textShadow: "0 0 30px rgba(139,92,246,0.15), 0 0 70px rgba(139,92,246,0.07)",
-            willChange: "transform",
-          }}
-          initial={{ opacity: 0, y: 60, filter: "blur(20px)" }}
-          whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-          viewport={{ once: false, margin: "-10% 0px" }}
-          transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-          className="font-black uppercase leading-none"
-        >
-          ABOUT
-        </motion.span>
-
-        {/* ME? */}
-        <motion.span
-          style={{
-            x: meX,
-            fontFamily: "var(--font-inter-tight), var(--font-space-grotesk), sans-serif",
-            fontSize: "clamp(2.8rem, 9vw, 9rem)",
-            letterSpacing: "-0.03em",
-            color: "#8B5CF6",
-            textShadow: "0 0 35px rgba(139,92,246,0.65), 0 0 90px rgba(139,92,246,0.3), 0 0 180px rgba(139,92,246,0.12)",
-            willChange: "transform",
-          }}
-          initial={{ opacity: 0, y: 60, filter: "blur(20px)" }}
-          whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-          viewport={{ once: false, margin: "-10% 0px" }}
-          transition={{ duration: 1.2, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
-          className="font-black uppercase leading-none"
-        >
-          ME?
-        </motion.span>
-      </motion.div>
+      <div className="portfolio-intro-rule mx-auto max-w-[1280px]" />
     </section>
   );
 }
