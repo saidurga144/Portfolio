@@ -4,7 +4,7 @@ import React, { useState, useRef, useLayoutEffect, useEffect, cloneElement } fro
 
 export type NavItem = {
   id: string | number;
-  icon: React.ReactElement;
+  icon: React.ReactElement<{ className?: string }>;
   label?: string;
   onClick?: () => void;
 };
